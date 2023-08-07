@@ -21,27 +21,27 @@ public class BookingRequest {
 	private LocalDate productLastRepair;
 	private LocalDateTime bookingTime;
 
-	public BookingRequest(String userEmail, String productName, int bookingId, String phoneNumber,
-			boolean bookingStatus, String imageUrl, String bookingUserName, CategoryOfItem categoryOfItem,
-			int productAge, LocalDate productLastRepair, LocalDateTime bookingTime) {
-
-		this.userEmail = userEmail;
-		this.productName = productName;
-		this.bookingId = bookingId;
-		this.phoneNumber = phoneNumber;
-		this.bookingStatus = bookingStatus;
-		this.imageUrl = imageUrl;
-		this.bookingUserName = bookingUserName;
-		this.categoryOfItem = categoryOfItem;
-		this.productAge = productAge;
-		this.productLastRepair = productLastRepair;
-		this.bookingTime = bookingTime;
-	}
+//	public BookingRequest(String userEmail, String productName, int bookingId, String phoneNumber,
+//			boolean bookingStatus, String imageUrl, String bookingUserName, CategoryOfItem categoryOfItem,
+//			int productAge, LocalDate productLastRepair, LocalDateTime bookingTime) {
+//
+//		this.userEmail = userEmail;
+//		this.productName = productName;
+//		this.bookingId = bookingId;
+//		this.phoneNumber = phoneNumber;
+//		this.bookingStatus = bookingStatus;
+//		this.imageUrl = imageUrl;
+//		this.bookingUserName = bookingUserName;
+//		this.categoryOfItem = categoryOfItem;
+//		this.productAge = productAge;
+//		this.productLastRepair = productLastRepair;
+//		this.bookingTime = bookingTime;
+//	}
 
 	// Constructor with all the properties as parameters
 	public BookingRequest(String userEmail, String productName, String phoneNumber, boolean bookingStatus,
-			String imageUrl, String bookingUserName, LocalDateTime bookingTime, CategoryOfItem categoryOfItem,
-			int bookingId) {
+			String imageUrl, String bookingUserName, LocalDateTime bookingTime, CategoryOfItem categoryOfItem,int productAge,int bookingId){
+			
 		this.userEmail = userEmail;
 		this.productName = productName;
 		this.phoneNumber = phoneNumber;
@@ -51,15 +51,14 @@ public class BookingRequest {
 		this.bookingTime = bookingTime;
 		this.categoryOfItem = categoryOfItem;
 		this.bookingId = bookingId;
+		this.productAge = productAge;
 	}
 
 	// Default constructor
-	public BookingRequest() {
-	}
+	
 
 	// Another constructor with some parameters (but not all)
 
-	// Getters and setters for all properties
 
 	public String getUserEmail() {
 		return userEmail;

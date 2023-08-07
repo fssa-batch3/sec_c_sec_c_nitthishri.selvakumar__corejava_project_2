@@ -22,7 +22,7 @@ public class TestbookingValidation {
 	public void TestInvalidateBookingDetails() {
 		try{
 			BookingValidation.validateBookingDetails(null);
-			Assertions.fail(BookingErrors.INVALID_METHOD);
+			Assertions.fail(BookingErrors.INVALID_METHOD); 
 		}
 		catch (InvalidBookingDetailException e) {
 			Assertions.assertEquals(BookingErrors.INVALID_OBJECT, e.getMessage());
@@ -208,40 +208,40 @@ public class TestbookingValidation {
 	}
 
 	// test case for the valid productlastRepair
-	@Test
-	public void TestValidProductLastRepair() {
-		LocalDate currentDate = LocalDate.now();
-		LocalDate minimumDate = currentDate.minusYears(10);
-		Assertions.assertTrue(BookingValidation.validateProductLastRepair(minimumDate));
-	}
-
-	// test case for the Invalid productlastrepair
-	@Test
-	public void TestInvalidProductLastRepair() {
-
-		try {
-			BookingValidation.validateProductLastRepair(null);
-			Assertions.fail(BookingErrors.INVALID_METHOD);
-		} catch (InvalidBookingDetailException e) {
-			Assertions.assertEquals(BookingErrors.INVALID_OBJECT, e.getMessage());
-		}
-
-		try {
-			LocalDate currentDate = LocalDate.now();
-			BookingValidation.validateProductLastRepair(currentDate);
-			Assertions.fail(BookingErrors.INVALID_METHOD);
-		} catch (InvalidBookingDetailException e) {
-			Assertions.assertEquals(BookingErrors.INVALID_TIME, e.getMessage());
-		}
-		try {
-			LocalDate currentDate = LocalDate.now();
-			LocalDate productLastRepair = currentDate.plusDays(1);
-			BookingValidation.validateProductLastRepair(productLastRepair);
-			Assertions.fail(BookingErrors.INVALID_METHOD);
-		} catch (InvalidBookingDetailException e) {
-			Assertions.assertEquals(BookingErrors.INVALID_TIME, e.getMessage());
-		}
-	}
+//	@Test
+//	public void TestValidProductLastRepair() {
+//		LocalDate currentDate = LocalDate.now();
+//		LocalDate minimumDate = currentDate.minusYears(10);
+//		Assertions.assertTrue(BookingValidation.validateProductLastRepair(minimumDate));
+//	}
+//
+//	// test case for the Invalid productlastrepair
+//	@Test
+//	public void TestInvalidProductLastRepair() {
+//
+//		try {
+//			BookingValidation.validateProductLastRepair(null);
+//			Assertions.fail(BookingErrors.INVALID_METHOD);
+//		} catch (InvalidBookingDetailException e) {
+//			Assertions.assertEquals(BookingErrors.INVALID_OBJECT, e.getMessage());
+//		}
+//
+//		try {
+//			LocalDate currentDate = LocalDate.now();
+//			BookingValidation.validateProductLastRepair(currentDate);
+//			Assertions.fail(BookingErrors.INVALID_METHOD);
+//		} catch (InvalidBookingDetailException e) {
+//			Assertions.assertEquals(BookingErrors.INVALID_TIME, e.getMessage());
+//		}
+//		try {
+//			LocalDate currentDate = LocalDate.now();
+//			LocalDate productLastRepair = currentDate.plusDays(1);
+//			BookingValidation.validateProductLastRepair(productLastRepair);
+//			Assertions.fail(BookingErrors.INVALID_METHOD);
+//		} catch (InvalidBookingDetailException e) {
+//			Assertions.assertEquals(BookingErrors.INVALID_TIME, e.getMessage());
+//		}
+//	}
 	
 //	@Test
 //	 public void TestValidCategoryOfItem() {

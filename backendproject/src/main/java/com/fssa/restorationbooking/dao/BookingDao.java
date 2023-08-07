@@ -15,7 +15,7 @@ import com.fssa.restorationbooking.model.BookingRequest;
 public class BookingDao {
 	public static void main(String[] args) throws SQLException,DAOException {
 		BookingRequest booking = new BookingRequest("vishui@gmail.com", "antique clock", "6380628123", false,
-				"https://iili.io/HZ8lwOX.png", "nitthi", LocalDateTime.of(2023, 8, 3, 22, 0), CategoryOfItem.CAMERA,
+				"https://iili.io/HZ8lwOX.png", "nitthi", LocalDateTime.of(2023, 8, 3, 22, 0), CategoryOfItem.CAMERA, 24,
 				59);
 //		addBooking(booking);
 		getAllBookings();

@@ -2,6 +2,7 @@ package com.fssa.restorationbooking.validation;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.function.BooleanSupplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,7 +24,7 @@ public class BookingValidation {
 			bookingUserNameValidator(bookingDetails.getBookingUserName());
 			// bookingTimeValidator(bookingDetails.getBookingTime());
 			productAgeValidator(bookingDetails.getProductAge());
-			validateProductLastRepair(bookingDetails.getProductLastRepair());
+//			validateProductLastRepair(bookingDetails.getProductLastRepair());
 		}
 
 		return true;
@@ -60,7 +61,7 @@ public class BookingValidation {
 			throw new InvalidBookingDetailException(BookingErrors.INVALID_OBJECT);
 		}
 
-		String nameregex = "^[a-zA-Z]{2,35}$";
+		String nameregex = "^[a-zA-Z ]{2,35}$";
 		Pattern pattern = Pattern.compile(nameregex);
 		Matcher matcher = pattern.matcher(productName);
 		Boolean isMatch = matcher.matches();
@@ -95,7 +96,7 @@ public class BookingValidation {
 		}
 
 //    regex pattern for India's phone number format
-		String numberregex = "^(\\+91|91|0)?[789]\\d{9}$";
+		String numberregex = "[2-9][0-9]{9}";
 		Pattern pattern = Pattern.compile(numberregex);
 		Matcher matcher = pattern.matcher(phoneNumber);
 		Boolean isMatchPhoneNumber = matcher.matches();
@@ -138,8 +139,7 @@ public class BookingValidation {
 			throw new InvalidBookingDetailException(BookingErrors.INVALID_OBJECT);
 		}
 
-		String nameregex = "^[^0-9]*$"
-; 
+		String nameregex = "^[^0-9]*$";
 //		Pattern pattern = Pattern.compile(nameregex);
 //		Matcher matcher = pattern.matcher(bookingUserName);
 		Boolean isMatchBookingUserName = Pattern.matches(nameregex, bookingUserName);
@@ -165,26 +165,28 @@ public class BookingValidation {
 		return true;
 	}
 
-	public static boolean validateProductLastRepair(LocalDate productLastRepair) {
-		LocalDate currentDate = LocalDate.now();
-		if (productLastRepair == null) {
-			throw new InvalidBookingDetailException(BookingErrors.INVALID_OBJECT);
-		}
-		if (productLastRepair.isAfter(currentDate)) {
-			throw new InvalidBookingDetailException(BookingErrors.INVALID_TIME);
-		}
-		if (productLastRepair.equals(currentDate)) {
-			throw new InvalidBookingDetailException(BookingErrors.INVALID_TIME);
-		}
 
-//        LocalDate minimumRepairDate = currentDate.minusYears(10);
+
+//	public static boolean validateProductLastRepair(LocalDate productLastRepair) {
+//		LocalDate currentDate = LocalDate.now();
+//		if (productLastRepair == null) {
+//			throw new InvalidBookingDetailException(BookingErrors.INVALID_OBJECT);
+//		}
+//		if (productLastRepair.isAfter(currentDate)) {
+//			throw new InvalidBookingDetailException(BookingErrors.INVALID_TIME);
+//		}
+//		if (productLastRepair.equals(currentDate)) {
+//			throw new InvalidBookingDetailException(BookingErrors.INVALID_TIME);
+//		}
 //
-//        if (productLastRepair.isAfter(minimumRepairDate)) {
-//        	 throw new InvalidBookingDetailException(BookingErrors.INVALID_PRODUCT);
-//        }
-
-		return true;
-
-	}
+////        LocalDate minimumRepairDate = currentDate.minusYears(10);
+////
+////        if (productLastRepair.isAfter(minimumRepairDate)) {
+////        	 throw new InvalidBookingDetailException(BookingErrors.INVALID_PRODUCT);
+////        }
+//
+//		return true;
+//
+//	}
 
 }

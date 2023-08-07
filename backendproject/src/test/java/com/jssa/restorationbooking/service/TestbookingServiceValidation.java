@@ -16,15 +16,15 @@ import com.fssa.restorationbooking.validation.BookingValidation;
 public class TestbookingServiceValidation {
 
 	public BookingRequest getBooking() {
-		BookingRequest booking = new BookingRequest("nikis@gmail.com", "antique table", "6380628123", false,
-				"https://iili.io/HZ8lwOX.png", "John Wick", LocalDateTime.of(2023, 8, 3, 23, 0), CategoryOfItem.AMPLIFIER, 55);
+		BookingRequest booking = new BookingRequest("nikis@gmail.com", "antiquetable", "6380628123", false,
+				"https://iili.io/HZ8lwOX.png", "JohnWick", LocalDateTime.of(2023, 8, 3, 23, 0), CategoryOfItem.AMPLIFIER,23,55);
 		
 		return booking;
 	}
 
 	public BookingRequest getBooking1() {
-		BookingRequest booking = new BookingRequest("nitthi@gmail.com", "antique clock", "6380628123", false,
-				"https://iili.io/HZ8lwOX.png", "Nitthi", LocalDateTime.of(2023, 8, 3, 22, 0), CategoryOfItem.AMPLIFIER, 59);
+		BookingRequest booking = new BookingRequest("nitthi@gmail.com", "antiqueclock", "6380628123", false,
+				"https://iili.io/HZ8lwOX.png", "Nitthishree", LocalDateTime.of(2023, 8, 3, 22, 0), CategoryOfItem.AMPLIFIER, 59,88);
 		return booking;
 	}
 
@@ -39,6 +39,7 @@ public class TestbookingServiceValidation {
 	public void testUpdateBooking() throws DAOException, SQLException {
 		BookingRequest booking = getBooking();
 		BookingService bookingService = getBookingService();
+		
 		Assertions.assertTrue(bookingService.updateBooking(booking));
 	}
 
