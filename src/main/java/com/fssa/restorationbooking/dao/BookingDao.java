@@ -21,7 +21,7 @@ public class BookingDao {
 		getAllBookings();
 	}
 
-
+ 
 
 	public static boolean addBooking(BookingRequest booking) throws SQLException {
 try(Connection connection = ConnectionUtil.getConnection()){
@@ -98,7 +98,8 @@ catch (SQLException ex) {
 			preparedStatement.setString(6, booking.getBookingUserName());
 			preparedStatement.setTimestamp(7, Timestamp.valueOf(booking.getBookingTime()));
 			preparedStatement.setString(8, booking.getCategoryOfItem().getBookingCategory());
-			preparedStatement.setInt(9, booking.getBookingId()); // Set bookingid for the update condition
+			preparedStatement.setInt(9, booking.getProductAge());
+			preparedStatement.setInt(10, booking.getBookingId()); // Set bookingid for the update condition
 			preparedStatement.executeUpdate();
 		} 
 		}

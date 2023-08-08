@@ -17,7 +17,7 @@ public class TestbookingServiceValidation {
 
 	public BookingRequest getBooking() {
 		BookingRequest booking = new BookingRequest("nikis@gmail.com", "antiquetable", "6380628123", false,
-				"https://iili.io/HZ8lwOX.png", "JohnWick", LocalDateTime.of(2023, 8, 3, 23, 0), CategoryOfItem.AMPLIFIER,23,55);
+				"https://iili.io/HZ8lwOX.png", "JohnWick", LocalDateTime.of(2023, 8, 3, 23, 0), CategoryOfItem.AMPLIFIER,23,1);
 		
 		return booking;
 	}
@@ -45,14 +45,14 @@ public class TestbookingServiceValidation {
 
 	@Test
 	public void testDeleteBooking() throws DAOException, SQLException {
-		BookingRequest booking = getBooking1();
+		// BookingRequest booking = getBooking1();
 		BookingService bookingService = getBookingService();
-		Assertions.assertTrue(bookingService.deleteBooking(25));
+		Assertions.assertTrue(bookingService.deleteBooking(1));
 	}
 
 	@Test
 	public void testGetBookingDetails() throws DAOException, SQLException {
-		BookingRequest booking = getBooking1();
+		// BookingRequest booking = getBooking1();
 		BookingService bookingService = getBookingService();
 		Assertions.assertTrue(bookingService.getAllBooking());
 	}
