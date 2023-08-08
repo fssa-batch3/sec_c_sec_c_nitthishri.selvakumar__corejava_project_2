@@ -41,7 +41,7 @@ public class BookingService {
 	} 
 
 	public boolean deleteBooking(int bookingId) throws DAOException, SQLException {
-		BookingValidation bookingValidate = new BookingValidation();
+		// BookingValidation bookingValidate = new BookingValidation();
 		if (BookingValidation.bookingIdValidator(bookingId)) {
 			return this.bookingDao.deleteBooking(bookingId);
 

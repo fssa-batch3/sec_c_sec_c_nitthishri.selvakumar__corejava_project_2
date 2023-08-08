@@ -79,7 +79,7 @@ public class BookingValidation {
 
 	public static boolean bookingIdValidator(int bookingId) throws InvalidBookingDetailException {
 
-		if (bookingId == 0) {
+		if (bookingId <= 0) {
 			throw new InvalidBookingDetailException(BookingErrors.INVALID_ID);
 		}
 

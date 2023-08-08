@@ -22,11 +22,6 @@ public class TestbookingServiceValidation {
 		return booking;
 	}
 
-	public BookingRequest getBooking1() {
-		BookingRequest booking = new BookingRequest("nitthi@gmail.com", "antiqueclock", "6380628123", false,
-				"https://iili.io/HZ8lwOX.png", "Nitthishree", LocalDateTime.of(2023, 8, 3, 22, 0), CategoryOfItem.AMPLIFIER, 59,88);
-		return booking;
-	}
 
 	public BookingService getBookingService() {
 		BookingValidation bookingValidation = new BookingValidation();
@@ -34,6 +29,14 @@ public class TestbookingServiceValidation {
 		BookingService bookingService = new BookingService(bookingValidation, bookingDao);
 		return bookingService;
 	} 
+	
+	@Test
+	public void testAddBooking() throws DAOException, SQLException {
+		BookingRequest booking = getBooking();
+		BookingService bookingService = getBookingService();
+		
+		Assertions.assertTrue(bookingService.addBooking(booking));
+	}
  
 	@Test
 	public void testUpdateBooking() throws DAOException, SQLException {
