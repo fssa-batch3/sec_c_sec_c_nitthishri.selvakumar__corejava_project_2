@@ -16,24 +16,35 @@ import com.fssa.restorationbooking.validation.BookingValidation;
 public class TestbookingServiceValidation {
 
 	public BookingRequest getBooking() {
-		BookingRequest booking = new BookingRequest("nikis@gmail.com", "antiquetable", "6380628123", false,
-				"https://iili.io/HZ8lwOX.png", "JohnWick", LocalDateTime.of(2023, 8, 3, 23, 0), CategoryOfItem.AMPLIFIER,23,55);
+		BookingRequest booking = new BookingRequest("nithi@gmail.com", "antiquetable", "6380628123", false,
+				"https://iili.io/HZ8lwOX.png", "JohnWick", LocalDateTime.of(2023, 8, 3, 23, 0), CategoryOfItem.AMPLIFIER,23,2);
+		
+		return booking;
+	}
+	
+	public BookingRequest getBooking2() {
+		BookingRequest booking = new BookingRequest("nithi@gmail.com", "antiquetable", "6380628123", false,
+				"https://iili.io/HZ8lwOX.png", "JohnWick", LocalDateTime.of(2023, 8, 3, 23, 0), CategoryOfItem.AMPLIFIER,23);
 		
 		return booking;
 	}
 
-	public BookingRequest getBooking1() {
-		BookingRequest booking = new BookingRequest("nitthi@gmail.com", "antiqueclock", "6380628123", false,
-				"https://iili.io/HZ8lwOX.png", "Nitthishree", LocalDateTime.of(2023, 8, 3, 22, 0), CategoryOfItem.AMPLIFIER, 59,88);
-		return booking;
-	}
+
 
 	public BookingService getBookingService() {
 		BookingValidation bookingValidation = new BookingValidation();
 		BookingDao bookingDao = new BookingDao();
 		BookingService bookingService = new BookingService(bookingValidation, bookingDao);
-		return bookingService;
+		return bookingService; 
 	} 
+	
+	@Test
+	public void testAddBooking() throws DAOException, SQLException {
+		BookingRequest booking = getBooking();
+		BookingService bookingService = getBookingService();
+		
+		Assertions.assertTrue(bookingService.addBooking(booking));
+	}
  
 	@Test
 	public void testUpdateBooking() throws DAOException, SQLException {
@@ -45,14 +56,14 @@ public class TestbookingServiceValidation {
 
 	@Test
 	public void testDeleteBooking() throws DAOException, SQLException {
-		BookingRequest booking = getBooking1();
+		// BookingRequest booking = getBooking1();
 		BookingService bookingService = getBookingService();
-		Assertions.assertTrue(bookingService.deleteBooking(25));
+		Assertions.assertTrue(bookingService.deleteBooking(3));
 	}
 
 	@Test
 	public void testGetBookingDetails() throws DAOException, SQLException {
-		BookingRequest booking = getBooking1();
+		// BookingRequest booking = getBooking1();
 		BookingService bookingService = getBookingService();
 		Assertions.assertTrue(bookingService.getAllBooking());
 	}

@@ -9,7 +9,7 @@ public class InvalidBookingDetailException extends RuntimeException {
 	public InvalidBookingDetailException(Throwable te) {
 		super(te);
 		
-	}
+	} 
 	
 	public InvalidBookingDetailException(String msg, Throwable te) {
 		

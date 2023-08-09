@@ -18,7 +18,7 @@ public class BookingService {
 		this.bookingValidation = bookingValidation;
 		this.bookingDao = bookingDao;
 
-	}
+	} 
 
 	public BookingService() {     
 
@@ -28,7 +28,7 @@ public class BookingService {
 		if (BookingValidation.validateBookingDetails(booking)) {
 			return BookingDao.addBooking(booking);
 		} else {
-			return false; 
+			return false;  
 		}
 	}
 
@@ -41,9 +41,9 @@ public class BookingService {
 	} 
 
 	public boolean deleteBooking(int bookingId) throws DAOException, SQLException {
-		BookingValidation bookingValidate = new BookingValidation();
+		// BookingValidation bookingValidate = new BookingValidation();
 		if (BookingValidation.bookingIdValidator(bookingId)) {
-			return this.bookingDao.deleteBooking(bookingId);
+			return bookingDao.deleteBooking(bookingId);
 
 		} else {
 			return false;
@@ -57,17 +57,18 @@ public class BookingService {
 
 	}
 
-	public static void main(String[] args) throws DAOException, SQLException {
-		BookingDao book = new BookingDao();
-		BookingValidation validBooking = new BookingValidation();
-		BookingService service = new BookingService(validBooking, book);
-		BookingRequest booking1 = new BookingRequest("nitth@gmail.com", "antique clock", "6380628123", true,
-				"https://iili.io/HZ8lwOX.png", "nitthu", LocalDateTime.of(2023, 8, 3, 21, 0), CategoryOfItem.CAMERA, 34,76);
-		boolean data = service.addBooking(booking1);
-		if (data) {
-			System.out.println("success");
-		} else {
-			System.out.println("failure");
-		}
-	}
+//	public static void main(String[] args) throws DAOException, SQLException {
+//		BookingDao book = new BookingDao();
+//		BookingValidation validBooking = new BookingValidation();
+//		BookingService service = new BookingService(validBooking, book);
+//		BookingRequest booking1 = new BookingRequest("nitth@gmail.com", "antique clock", "6380628123", true,
+//				"https://iili.io/HZ8lwOX.png", "nitthu", LocalDateTime.of(2023, 8, 3, 21, 0), CategoryOfItem.CAMERA, 34,76);
+//		boolean data = service.addBooking(booking1);
+//		if (data) {
+//			System.out.println("success");
+//		} else {
+//			System.out.println("failure");
+//		}
+//		
+//	}
 }

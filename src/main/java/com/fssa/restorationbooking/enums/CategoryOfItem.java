@@ -10,7 +10,7 @@ public enum CategoryOfItem {
     VOICE_RECORDER("voice recorder"),
     VINTAGE_SWITCH("vintage switch"),
     GRAMOPHONE("gramophone"),
-    WALKMAN("walkman"),
+    WALKMAN("walkman"), 
     AMPLIFIER("amplifier"),
     CALCULATOR("calculator"),
     TELEVISION("television"),
@@ -33,9 +33,4 @@ public enum CategoryOfItem {
         return bookingCategory;
     }
 
-    // Example usage of the enum in the main method
-    public static void main(String[] args) {
-        CategoryOfItem x1 = CategoryOfItem.RADIO;
-        System.out.println(x1); // Output: RADIO
-    }
 }

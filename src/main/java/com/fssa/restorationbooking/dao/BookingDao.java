@@ -11,28 +11,32 @@ import java.util.List;
 
 import com.fssa.restorationbooking.enums.CategoryOfItem;
 import com.fssa.restorationbooking.model.BookingRequest;
+import com.fssa.restorationbooking.util.ConnectionUtil;
+import com.fssa.restorationbooking.util.Logger;
 
 public class BookingDao {
+	
+	 static Logger logger = new Logger();
 	public static void main(String[] args) throws SQLException,DAOException {
 		BookingRequest booking = new BookingRequest("vishui@gmail.com", "antique clock", "6380628123", false,
 				"https://iili.io/HZ8lwOX.png", "nitthi", LocalDateTime.of(2023, 8, 3, 22, 0), CategoryOfItem.CAMERA, 24,
 				59);
-//		addBooking(booking);
-		getAllBookings();
+	addBooking(booking);
+//		getupdate();
 	}
 
-
+ 
 
 	public static boolean addBooking(BookingRequest booking) throws SQLException {
 try(Connection connection = ConnectionUtil.getConnection()){
 		LocalDateTime startTime = booking.getBookingTime();
 		Timestamp startTimeTs = Timestamp.valueOf(startTime);
 
-		String query = "INSERT INTO product_booking (userEmail, productName, phoneNumber, bookingStatus, imageUrl, bookingUserName, bookingTime, categoryOfItem, productAge, bookingid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO product_booking (userEmail, productName, phoneNumber, bookingStatus, imageUrl, bookingUserName, bookingTime, categoryOfItem,productAge) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-			System.out.println("DAO");
+			logger.info("DAO");
 
 			preparedStatement.setString(1, booking.getUserEmail());
 			preparedStatement.setString(2, booking.getProductName());
@@ -43,7 +47,7 @@ try(Connection connection = ConnectionUtil.getConnection()){
 			preparedStatement.setTimestamp(7, Timestamp.valueOf(booking.getBookingTime()));
 			preparedStatement.setString(8, booking.getCategoryOfItem().getBookingCategory());
 			preparedStatement.setInt(9, booking.getProductAge());
-			preparedStatement.setInt(10, booking.getBookingId());
+			//preparedStatement.setInt(10, booking.getBookingId());
 			// Set bookingid here based on your requirements, e.g.,
 			// preparedStatement.setInt(10, booking.getBookingId());
 			preparedStatement.executeUpdate();
@@ -54,7 +58,7 @@ catch (SQLException ex) {
 			throw ex;
 		}
 
-		return true;
+		return true; 
 	}
 
 	public static List<BookingRequest> getAllBookings() throws SQLException {
@@ -64,15 +68,15 @@ catch (SQLException ex) {
 		try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
-					System.out.println("userEmail: " + resultSet.getString(1));
-					System.out.println("Product Name: " + resultSet.getString(2));
-					System.out.println("Phone Number: " + resultSet.getString(3));
-					System.out.println("BookingStatus: " + resultSet.getString(4));
-					System.out.println("ImageUrl: " + resultSet.getString(5));
-					System.out.println("User Name: " + resultSet.getString(6));
-					System.out.println("Booking Time: " + resultSet.getString(7));
-					System.out.println("Category Of Item: " + resultSet.getString(8));
-					System.out.println("BookingId: " + resultSet.getString(9));
+					logger.info("userEmail: " + resultSet.getString(1));
+					logger.info("Product Name: " + resultSet.getString(2));
+					logger.info("Phone Number: " + resultSet.getString(3));
+					logger.info("BookingStatus: " + resultSet.getString(4));
+					logger.info("ImageUrl: " + resultSet.getString(5));  
+					logger.info("User Name: " + resultSet.getString(6));
+					logger.info("Booking Time: " + resultSet.getString(7));
+					logger.info("Category Of Item: " + resultSet.getString(8));
+					logger.info("BookingId: " + resultSet.getString(9));
 					
 					
 				}
@@ -98,7 +102,8 @@ catch (SQLException ex) {
 			preparedStatement.setString(6, booking.getBookingUserName());
 			preparedStatement.setTimestamp(7, Timestamp.valueOf(booking.getBookingTime()));
 			preparedStatement.setString(8, booking.getCategoryOfItem().getBookingCategory());
-			preparedStatement.setInt(9, booking.getBookingId()); // Set bookingid for the update condition
+			preparedStatement.setInt(9, booking.getProductAge());
+			preparedStatement.setInt(10, booking.getBookingId()); // Set bookingid for the update condition
 			preparedStatement.executeUpdate();
 		} 
 		}

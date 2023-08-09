@@ -1,4 +1,4 @@
-package com.fssa.restorationbooking.dao;
+package com.fssa.restorationbooking.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +15,7 @@ public class ConnectionUtil {
 	        if (System.getenv("CI") != null) {
 	            url = System.getenv("DATABASE_HOST");
 	            userName = System.getenv("DATABASE_USERNAME");
-	            passWord = System.getenv("DATABASE_PASSWORD");
+	            passWord = System.getenv("DATABASE_PASSWORD"); 
 	        } else {
 	            Dotenv env = Dotenv.load();
 	            url = env.get("DATABASE_HOST");
@@ -37,7 +37,4 @@ public class ConnectionUtil {
 		getConnection();
 	}
 }
-
-
-
 

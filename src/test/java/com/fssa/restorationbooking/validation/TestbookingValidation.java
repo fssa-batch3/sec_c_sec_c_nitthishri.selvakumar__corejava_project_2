@@ -1,6 +1,6 @@
 package com.fssa.restorationbooking.validation;
 
-import java.time.LocalDate;
+import java.time.LocalDate; 
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,15 +11,12 @@ import com.fssa.restorationbooking.model.BookingErrors;
 import com.fssa.restorationbooking.validation.BookingValidation;
 import com.fssa.restorationbooking.validation.InvalidBookingDetailException;
 
-//Hello
-//Hello 2
-
 public class TestbookingValidation {
 
 	// test case for the valid all booking details
 	
 	@Test
-	public void TestInvalidateBookingDetails() {
+	public void testInvalidateBookingDetails() {
 		try{
 			BookingValidation.validateBookingDetails(null);
 			Assertions.fail(BookingErrors.INVALID_METHOD); 
@@ -32,14 +29,14 @@ public class TestbookingValidation {
 	// test case for the valid emailID
 	
 	@Test
-	public void TestValidEmailValidator() {
+	public void testValidEmailValidator() {
 		Assertions.assertTrue(BookingValidation.emailValidator("nitthishri@gmail.com"));
 	}
 
 	// test case for the Invalid emailID
 	
 	@Test
-	public void TestInvalidEmailValidator() {
+	public void testInvalidEmailValidator() {
 
 		try {
 
@@ -60,13 +57,13 @@ public class TestbookingValidation {
 
 	// test case for the valid productname
 	@Test
-	public void TestValidProductName() {
+	public void testValidProductName() {
 		Assertions.assertTrue(BookingValidation.emailValidator("nitthishri@gmail.com"));
 	}
 
 	// test case for the Invalid productname
 	@Test
-	public void TestInvalidProductName() {
+	public void testInvalidProductName() {
 
 		try {
  
@@ -87,14 +84,14 @@ public class TestbookingValidation {
 
 //	test for valid booking Id
 	@Test
-	public void TestValidBookingIdValidator() {
+	public void testValidBookingIdValidator() {
 		Assertions.assertTrue(BookingValidation.bookingIdValidator(23));
 
 	}
 
 //	test for invalid booking Id
 	@Test
-	public void TestInvalidBookingIdValidator() {
+	public void testInvalidBookingIdValidator() {
 
 		try {
 
@@ -107,13 +104,13 @@ public class TestbookingValidation {
 
 	// test case for the valid phoneNumber
 	@Test
-	public void TestValidPhoneNumber() {
+	public void testValidPhoneNumber() {
 		Assertions.assertTrue(BookingValidation.phoneNumberValidator("9876543215"));
 	}
 
 	// test case for the Invalid phoneNumber
 	@Test
-	public void TestInvalidPhoneNumber() {
+	public void testInvalidPhoneNumber() {
 
 		try {
 
@@ -134,14 +131,14 @@ public class TestbookingValidation {
 
 	// test case for the valid phoneNumber
 	@Test
-	public void TestValidImageUrl() {
+	public void testValidImageUrl() {
 		Assertions.assertTrue(BookingValidation.imageUrlValidator("https://iili.io/HZoYqJa.png"));
 
 	}
 
 	// test case for the Invalid phoneNumber
 	@Test
-	public void TestInvalidImageUrl() {
+	public void testInvalidImageUrl() {
 
 		try {
 
@@ -161,13 +158,13 @@ public class TestbookingValidation {
 
 	// test case for the valid bookingusername
 	@Test
-	public void TestValidBookingUserName() {
+	public void testValidBookingUserName() {
 		Assertions.assertTrue(BookingValidation.emailValidator("nitthishri@gmail.com"));
 	}
 
 	// test case for the Invalid bookingusername
 	@Test
-	public void TestInvalidBookingUserName() {
+	public void testInvalidBookingUserName() {
 
 		try {
 
@@ -188,14 +185,14 @@ public class TestbookingValidation {
 
 //				test for valid booking Id
 	@Test
-	public void TestValidAgeValidator() {
+	public void testValidAgeValidator() {
 		Assertions.assertTrue(BookingValidation.productAgeValidator(23));
 
 	}
 
 //				test for invalid booking Id
 	@Test
-	public void TestInvalidAgeValidator() {
+	public void testInvalidAgeValidator() {
 
 		try {
 
