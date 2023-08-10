@@ -11,3 +11,4 @@
 | bookingTime     | datetime     | YES  |     | NULL               |                |
 | categoryOfItem  | varchar(30)  | YES  |     | NULL               |                |
 | productAge      | int          | NO   |     |                    |                |
+![image](https://github.com/fssa-batch3/sec_c_sec_c_nitthishri.selvakumar__corejava_project_2/assets/116252627/979c8ad3-6bc5-4f11-8770-a00676fd9466)
