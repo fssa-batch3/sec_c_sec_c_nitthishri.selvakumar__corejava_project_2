@@ -16,16 +16,4 @@ public class InvalidBookingDetailException extends RuntimeException {
 		super(msg, te);
 	}
 
-//public static boolean validateBookingDate(LocalDateTime bookingTime) throws InvalidBookingDetailException {
-//	LocalDateTime currentTime = LocalDateTime.now();
-//	if(bookingTime==null) {
-//		throw new InvalidBookingDetailException("Booking Time cannot be empty or null");
-//	}
-//	if(bookingTime.isBefore(currentTime)) {
-//		throw new InvalidBookingDetailException("Booking Time should be in the present");
-//		
-//		
-//	}
-//	return true;
-//}
 }
