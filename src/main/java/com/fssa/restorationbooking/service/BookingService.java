@@ -22,7 +22,7 @@ public class BookingService {
 
 	public BookingService() {     
 
-	}
+	} 
 
 	public boolean addBooking(BookingRequest booking) throws DAOException, SQLException {
 		if (BookingValidation.validateBookingDetails(booking)) {

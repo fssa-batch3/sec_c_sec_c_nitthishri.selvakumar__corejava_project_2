@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+
 import com.fssa.restorationbooking.dao.BookingDao;
 import com.fssa.restorationbooking.dao.DAOException;
 import com.fssa.restorationbooking.enums.CategoryOfItem;
@@ -16,20 +17,21 @@ import com.fssa.restorationbooking.validation.BookingValidation;
 public class TestbookingServiceValidation {
 
  
-//      Creates and returns a sample BookingRequest object for testing.
+	
+// Creates and returns a sample BookingRequest object for testing.
      
     public BookingRequest getBooking() {
-        BookingRequest booking = new BookingRequest("nithi@gmail.com", "antiquetable", "6380628123", false,
+        BookingRequest booking = new BookingRequest("kavi@gmail.com", "antiquetable", "6380628123", false,
                 "https://iili.io/HZ8lwOX.png", "JohnWick", LocalDateTime.of(2023, 8, 3, 23, 0), CategoryOfItem.AMPLIFIER, 23, 2);
 
         return booking;
     }
 
   
-//     Creates and returns another sample BookingRequest object for testing.
+//  Creates and returns another sample BookingRequest object for testing.
     
     public BookingRequest getBooking2() {
-        BookingRequest booking = new BookingRequest("nithi@gmail.com", "antiquetable", "6380628123", false,
+        BookingRequest booking = new BookingRequest("kavi@gmail.com", "antiquetable", "6380628123", false,
                 "https://iili.io/HZ8lwOX.png", "JohnWick", LocalDateTime.of(2023, 8, 3, 23, 0), CategoryOfItem.AMPLIFIER, 23);
 
         return booking;
@@ -72,7 +74,7 @@ public class TestbookingServiceValidation {
     @Test
     public void testDeleteBooking() throws DAOException, SQLException {
         BookingService bookingService = getBookingService();
-        Assertions.assertTrue(bookingService.deleteBooking(3));
+        Assertions.assertTrue(bookingService.deleteBooking(6));
     }
 
    
