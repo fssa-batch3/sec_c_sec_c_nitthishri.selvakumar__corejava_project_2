@@ -17,7 +17,7 @@ public class BookingValidation {
 		} else { 
 			emailValidator(bookingDetails.getUserEmail());
 			productNameValidator(bookingDetails.getProductName());
-			bookingIdValidator(bookingDetails.getBookingId());
+
 			phoneNumberValidator(bookingDetails.getPhoneNumber());
 			// bookingStatusValidation(bookingDetails.isBookingStatus());
 			imageUrlValidator(bookingDetails.getImageUrl());

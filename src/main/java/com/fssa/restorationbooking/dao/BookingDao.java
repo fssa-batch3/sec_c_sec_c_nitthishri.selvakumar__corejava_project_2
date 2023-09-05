@@ -4,12 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fssa.restorationbooking.enums.CategoryOfItem;
 import com.fssa.restorationbooking.model.BookingRequest;
 import com.fssa.restorationbooking.util.ConnectionUtil;
 import com.fssa.restorationbooking.util.Logger;
@@ -38,11 +39,9 @@ public class BookingDao {
 	public static boolean addBooking(BookingRequest booking) throws SQLException {
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			// Convert LocalDateTime to Timestamp
-			LocalDateTime startTime = booking.getBookingTime();
-			Timestamp startTimeTs = Timestamp.valueOf(startTime);
 
 			// SQL query to insert a new booking request
-			String query = "INSERT INTO product_booking (userEmail, productName, phoneNumber, bookingStatus, imageUrl, bookingUserName, bookingTime, categoryOfItem,productAge) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO booking_Request(userEmail, productName, phoneNumber, bookingStatus, imageUrl, bookingUserName, categoryOfItem,productAge) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 			// Prepare and execute the SQL statement
 			try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -55,9 +54,9 @@ public class BookingDao {
 				preparedStatement.setBoolean(4, false);
 				preparedStatement.setString(5, booking.getImageUrl());
 				preparedStatement.setString(6, booking.getBookingUserName());
-				preparedStatement.setTimestamp(7, Timestamp.valueOf(booking.getBookingTime()));
-				preparedStatement.setString(8, booking.getCategoryOfItem().getBookingCategory());
-				preparedStatement.setInt(9, booking.getProductAge());
+//				preparedStatement.setTimestamp(7, Timestamp.valueOf(booking.getBookingTime()));
+				preparedStatement.setString(7, booking.getCategoryOfItem()+"");
+				preparedStatement.setInt(8, booking.getProductAge());
 
 				// Execute the SQL query to insert the booking
 				preparedStatement.executeUpdate();
@@ -72,39 +71,13 @@ public class BookingDao {
 	}
 
 	
-//	  Retrieves a list of all booking requests from the database.
-	 
-	public static List<BookingRequest> getAllBookings() throws SQLException {
-		List<BookingRequest> bookings = new ArrayList<>();
-		String query = "SELECT * FROM product_booking";
-		try (Connection connection = ConnectionUtil.getConnection()) {
-			try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-				try (ResultSet resultSet = preparedStatement.executeQuery()) {
-					while (resultSet.next()) {
-						logger.info("userEmail: " + resultSet.getString(1));
-						logger.info("Product Name: " + resultSet.getString(2));
-						logger.info("Phone Number: " + resultSet.getString(3));
-						logger.info("BookingStatus: " + resultSet.getString(4));
-						logger.info("ImageUrl: " + resultSet.getString(5));
-						logger.info("User Name: " + resultSet.getString(6));
-						logger.info("Booking Time: " + resultSet.getString(7));
-						logger.info("Category Of Item: " + resultSet.getString(8));
-						logger.info("BookingId: " + resultSet.getString(9));
-					}
-				}
-			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-			throw ex;
-		}
-		return bookings;
-	}
 
-	
+
+
 //	  Updates an existing booking request in the database.
 	
 	public static boolean updateBooking(BookingRequest booking) throws SQLException {
-		String query = "UPDATE product_booking SET userEmail = ?, productName = ?, phoneNumber = ?, bookingStatus = ?, imageUrl = ?, bookingUserName = ?, bookingTime = ?, categoryOfItem = ?, productAge = ? WHERE bookingid = ?";
+		String query = "UPDATE booking_Request SET userEmail = ?, productName = ?, phoneNumber = ?, bookingStatus = ?, imageUrl = ?, bookingUserName = ?, categoryOfItem = ?, productAge = ? WHERE bookingid = ?";
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 				preparedStatement.setString(1, booking.getUserEmail());
@@ -113,10 +86,10 @@ public class BookingDao {
 				preparedStatement.setBoolean(4, booking.isBookingStatus());
 				preparedStatement.setString(5, booking.getImageUrl());
 				preparedStatement.setString(6, booking.getBookingUserName());
-				preparedStatement.setTimestamp(7, Timestamp.valueOf(booking.getBookingTime()));
-				preparedStatement.setString(8, booking.getCategoryOfItem().getBookingCategory());
-				preparedStatement.setInt(9, booking.getProductAge());
-				preparedStatement.setInt(10, booking.getBookingId()); // Set bookingid for the update condition
+//				preparedStatement.setTimestamp(7, Timestamp.valueOf(booking.getBookingTime()));
+				preparedStatement.setString(7, booking.getBookingCategory());
+				preparedStatement.setInt(8, booking.getProductAge());
+				preparedStatement.setInt(9, booking.getBookingId()); // Set bookingid for the update condition
 				preparedStatement.executeUpdate();
 			}
 		} catch (SQLException ex) {
@@ -126,10 +99,83 @@ public class BookingDao {
 		return true;
 	}
 	
+	//Read an selected existing booking request
+	public static List<BookingRequest> getSelectedBookings(int BookingId) throws DAOException, SQLException{
+		List<BookingRequest> bookingRequest = new ArrayList<>();
+	    try (Connection connection = ConnectionUtil.getConnection()) {
+	        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM booking_Request WHERE bookingid = ?")) {
+	            stmt.setInt(1, BookingId);
+	            try (ResultSet rs = stmt.executeQuery()) {
+	                if (rs.next()) {
+	                	
+	                	BookingRequest bRequest = new BookingRequest();
+	                	bRequest.setUserEmail(rs.getString("userEmail"));
+	                	bRequest.setProductName(rs.getString("productName"));
+	                	bRequest.setPhoneNumber(rs.getString("phoneNumber"));
+	                	bRequest.setBookingStatus(rs.getBoolean("bookingStatus"));
+	                	bRequest.setImageUrl(rs.getString("imageUrl"));
+	                	bRequest.setBookingUserName(rs.getString("bookingUserName"));
+
+            //	bRequest.setBookingTime(rs.getTimestamp("bookingTime"));
+	                	bRequest.setProductAge(rs.getInt("productAge"));
+//	                	CategoryOfItem cate = CategoryOfItem.valueOf(rs.getString("categoryOfItem"));
+//	                	bRequest.setCategoryOfItem(cate);
+	                	
+	                	bookingRequest.add(bRequest);
+
+	                }
+	            }
+	           
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        throw e;
+	    }
+	    return bookingRequest;
+	}
+	
+	//Read an all existing booking request
+	public static List<BookingRequest> getAllBookings() throws DAOException, SQLException{
+		List<BookingRequest> bookingRequest = new ArrayList<>();
+	    try (Connection connection = ConnectionUtil.getConnection()) {
+	        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM booking_Request")) {
+	          
+	            try (ResultSet rs = stmt.executeQuery()) {
+	                while (rs.next()) {
+	                	
+	                	Timestamp bookingTimeSql= rs.getTimestamp("bookingTime");
+						LocalDateTime bookingTime = bookingTimeSql.toLocalDateTime();
+	                	
+	                	BookingRequest bRequest1 = new BookingRequest();
+	                	bRequest1.setBookingId(rs.getInt("bookingId"));
+	                	bRequest1.setUserEmail(rs.getString("userEmail"));
+	                	bRequest1.setProductName(rs.getString("productName"));
+	                	bRequest1.setPhoneNumber(rs.getString("phoneNumber"));
+	                	bRequest1.setBookingStatus(rs.getBoolean("bookingStatus"));
+	                	bRequest1.setImageUrl(rs.getString("imageUrl"));
+	                	bRequest1.setBookingUserName(rs.getString("bookingUserName"));
+	                	bRequest1.setBookingTime(bookingTime);
+	                	bRequest1.setProductAge(rs.getInt("productAge"));
+//	                	CategoryOfItem category = CategoryOfItem.valueOf(rs.getString("categoryOfItem"));
+//	                	bRequest1.setCategoryOfItem(category);
+	                	bRequest1.setBookingCategory(rs.getString("CategoryOfItem"));
+	                	
+	                	bookingRequest.add(bRequest1);
+
+	                }
+	            }
+	           
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        throw e;
+	    }
+	    return bookingRequest;
+	}
 // * Deletes a booking request from the database based on the provided booking ID.
 	
 	public boolean deleteBooking(int bookingId) throws SQLException {
-		String query = "DELETE FROM product_booking WHERE bookingid = ?";
+		String query = "DELETE FROM booking_Request WHERE bookingid = ?";
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 				preparedStatement.setInt(1, bookingId);

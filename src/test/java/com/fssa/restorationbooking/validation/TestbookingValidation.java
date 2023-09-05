@@ -1,15 +1,9 @@
 package com.fssa.restorationbooking.validation;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.restorationbooking.model.BookingErrors;
-import com.fssa.restorationbooking.validation.BookingValidation;
-import com.fssa.restorationbooking.validation.InvalidBookingDetailException;
 
 public class TestbookingValidation {
 

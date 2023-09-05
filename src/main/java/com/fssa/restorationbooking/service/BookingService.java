@@ -2,6 +2,7 @@ package com.fssa.restorationbooking.service;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.fssa.restorationbooking.dao.BookingDao;
 import com.fssa.restorationbooking.dao.DAOException;
@@ -18,17 +19,17 @@ public class BookingService {
 		this.bookingValidation = bookingValidation;
 		this.bookingDao = bookingDao;
 
-	} 
+	}
 
-	public BookingService() {     
+	public BookingService() {
 
-	} 
+	}
 
 	public boolean addBooking(BookingRequest booking) throws DAOException, SQLException {
 		if (BookingValidation.validateBookingDetails(booking)) {
 			return BookingDao.addBooking(booking);
 		} else {
-			return false;  
+			return false;
 		}
 	}
 
@@ -38,7 +39,7 @@ public class BookingService {
 		} else {
 			return false;
 		}
-	} 
+	}
 
 	public boolean deleteBooking(int bookingId) throws DAOException, SQLException {
 		// BookingValidation bookingValidate = new BookingValidation();
@@ -50,25 +51,33 @@ public class BookingService {
 		}
 	}
 
-	public boolean getAllBooking() throws DAOException, SQLException {
+	public List<BookingRequest> getParticularBooking(int bookingId) throws DAOException, SQLException {
 		BookingDao bookingDao = new BookingDao();
-		BookingDao.getAllBookings();
-		return true;
+		return BookingDao.getSelectedBookings(bookingId);
 
 	}
 
+	public static List<BookingRequest> getFullBooking() throws DAOException, SQLException {
+		BookingDao bookingDao1 = new BookingDao();
+		return BookingDao.getAllBookings();
+	}
+
 //	public static void main(String[] args) throws DAOException, SQLException {
-//		BookingDao book = new BookingDao();
-//		BookingValidation validBooking = new BookingValidation();
-//		BookingService service = new BookingService(validBooking, book);
-//		BookingRequest booking1 = new BookingRequest("nitth@gmail.com", "antique clock", "6380628123", true,
-//				"https://iili.io/HZ8lwOX.png", "nitthu", LocalDateTime.of(2023, 8, 3, 21, 0), CategoryOfItem.CAMERA, 34,76);
-//		boolean data = service.addBooking(booking1);
-//		if (data) {
-//			System.out.println("success");
-//		} else {
-//			System.out.println("failure");
+////		BookingDao book = new BookingDao();
+////		BookingValidation validBooking = new BookingValidation();
+////		BookingService service = new BookingService(validBooking, book);
+////		BookingRequest booking1 = new BookingRequest("nitth@gmail.com", "antique clock", "6380628123", true,
+////				"https://iili.io/HZ8lwOX.png", "nitthu", LocalDateTime.of(2023, 8, 3, 21, 0), CategoryOfItem.CAMERA, 34,76);
+////		boolean data = service.addBooking(booking1);
+////		if (data) {
+////			System.out.println("success");
+////		} else {
+////			System.out.println("failure");
+////		}
+//		List<BookingRequest> arr = getFullBooking();
+//		for (BookingRequest e : arr) {
+//			System.out.println(e.getBookingUserName() + e.getImageUrl() + e.getPhoneNumber());
 //		}
-//		
+//
 //	}
 }

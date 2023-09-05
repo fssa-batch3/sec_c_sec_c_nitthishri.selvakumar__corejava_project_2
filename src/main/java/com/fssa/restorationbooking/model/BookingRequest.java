@@ -1,5 +1,6 @@
 package com.fssa.restorationbooking.model;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -7,6 +8,18 @@ import java.util.List;
 import com.fssa.restorationbooking.enums.CategoryOfItem;
 
 public class BookingRequest {
+
+	
+
+
+//	public static Object CategoryOfItem;
+
+
+
+	public BookingRequest() {
+		super();
+	}
+
 
 	// Properties of the BookingRequest class
 	private String userEmail;
@@ -16,15 +29,41 @@ public class BookingRequest {
 	private boolean bookingStatus;
 	private String imageUrl;
 	private String bookingUserName;
-	private CategoryOfItem categoryOfItem;
+	public String categoryOfItem;
+	
+	
+	public void setBookingCategory(String categoryOfItem) {
+		this.categoryOfItem = categoryOfItem;
+	}
+
+
+	private LocalDateTime bookingTime1;
+
+	
+	public LocalDateTime getBookingTime1() {
+		return bookingTime1;
+	}
+
+
+	public void setBookingTime1(LocalDateTime bookingTime1) {
+		this.bookingTime1 = bookingTime1;
+	}
+
+
+	public String getCategoryOfItem() {
+		return categoryOfItem;
+	}
+
+
+
+
 	private int productAge;
-	private LocalDate productLastRepair;
-	private LocalDateTime bookingTime;
+	
 
 
 	
 	public BookingRequest(String userEmail, String productName, String phoneNumber, boolean bookingStatus,
-			String imageUrl, String bookingUserName, LocalDateTime bookingTime, CategoryOfItem categoryOfItem,int productAge){
+			String imageUrl, String bookingUserName, String categoryOfItem,int productAge){
 			
 		this.userEmail = userEmail;
 		this.productName = productName;
@@ -32,16 +71,15 @@ public class BookingRequest {
 		this.bookingStatus = bookingStatus;
 		this.imageUrl = imageUrl; 
 		this.bookingUserName = bookingUserName;
-		this.bookingTime = bookingTime;
+		this.bookingTime1 = bookingTime1;
 		this.categoryOfItem = categoryOfItem;
-	
 		this.productAge = productAge;
 	}
 
 
 	// Constructor with all the properties as parameters
 	public BookingRequest(String userEmail, String productName, String phoneNumber, boolean bookingStatus,
-			String imageUrl, String bookingUserName, LocalDateTime bookingTime, CategoryOfItem categoryOfItem,int productAge,int bookingId){
+			String imageUrl, String bookingUserName, String amplifier,int productAge,int bookingId){
 			
 		this.userEmail = userEmail;
 		this.productName = productName;
@@ -49,8 +87,8 @@ public class BookingRequest {
 		this.bookingStatus = bookingStatus;
 		this.imageUrl = imageUrl; 
 		this.bookingUserName = bookingUserName;
-		this.bookingTime = bookingTime;
-		this.categoryOfItem = categoryOfItem;
+		this.bookingTime1 = bookingTime1;
+		this.categoryOfItem = amplifier;
 		this.bookingId = bookingId;
 		this.productAge = productAge;
 	}
@@ -63,6 +101,8 @@ public class BookingRequest {
 	
 //	  Get the email address of the user who made the booking.
 	
+	
+
 	public String getUserEmail() {
 		return userEmail;
 	}
@@ -70,6 +110,8 @@ public class BookingRequest {
 	
 //	 Set the email address of the user who made the booking.
 	
+	
+
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
@@ -162,28 +204,25 @@ public class BookingRequest {
 //	 Get the date and time of the booking request.
 	 
 	public LocalDateTime getBookingTime() {
-		return bookingTime;
+		return bookingTime1;
 	}
 
 
 //	  Set the date and time of the booking request.
 	
-	public void setBookingTime(LocalDateTime bookingTime) {
-		this.bookingTime = bookingTime;
+	public void setBookingTime(LocalDateTime timestamp) {
+		this.bookingTime1 = timestamp;
 	}
 
 //	  Get the category of the item being booked.
 	
-	public CategoryOfItem getCategoryOfItem() {
-		return categoryOfItem;
-	}
+//	public CategoryOfItem getCategoryOfItem() {
+//		return categoryOfItem;
+//	}
 
 
 //	  Set the category of the item being booked.
 	 
-	public void setCategoryOfItem(CategoryOfItem categoryOfItem) {
-		this.categoryOfItem = categoryOfItem;
-	}
 
 	
 //	  Get the age of the product being booked in years.
@@ -199,18 +238,39 @@ public class BookingRequest {
 		this.productAge = productAge;
 	}
 
-//	  Get the date of the last repair for the product, if available.
-	
-	public LocalDate getProductLastRepair() {
-		return productLastRepair;
+
+	public boolean addBooking(BookingRequest booking) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
-	
-//	  Set the date of the last repair for the product.
-	 
-	public void setProductLastRepair(LocalDate productLastRepair) {
-		this.productLastRepair = productLastRepair;
+
+
+	@Override
+	public String toString() {
+		return "BookingRequest [userEmail=" + userEmail + ", productName=" + productName + ", bookingId=" + bookingId
+				+ ", phoneNumber=" + phoneNumber + ", bookingStatus=" + bookingStatus + ", imageUrl=" + imageUrl
+				+ ", bookingUserName=" + bookingUserName + ", categoryOfItem=" + categoryOfItem + ", bookingTime1="
+				+ bookingTime1 + ", productAge=" + productAge + "]";
 	}
 
+
+	public String getBookingCategory() {
+		// TODO Auto-generated method stub
+		return categoryOfItem;
+
+	}
+
+
+
+
+
+
+
+//
+//	public String getBookingCategory() {
+//		// TODO Auto-generated method stub
+//		return categoryOfItem;
+//	}
 
 }
