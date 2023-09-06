@@ -14,7 +14,7 @@ public class ConnectionUtil {
 		url = System.getenv("DATABASE_HOST");
 		userName = System.getenv("DATABASE_USERNAME");
 		passWord = System.getenv("DATABASE_PASSWORD");
-
+//
 //	url = "jdbc:mysql://localhost:3306/blackwoodalley";
 //	userName ="root";
 //	passWord ="root";
