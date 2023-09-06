@@ -115,12 +115,10 @@ public class BookingDao {
 	                	bRequest.setBookingStatus(rs.getBoolean("bookingStatus"));
 	                	bRequest.setImageUrl(rs.getString("imageUrl"));
 	                	bRequest.setBookingUserName(rs.getString("bookingUserName"));
-
-            //	bRequest.setBookingTime(rs.getTimestamp("bookingTime"));
 	                	bRequest.setProductAge(rs.getInt("productAge"));
 //	                	CategoryOfItem cate = CategoryOfItem.valueOf(rs.getString("categoryOfItem"));
 //	                	bRequest.setCategoryOfItem(cate);
-	                	
+	                	bRequest.setBookingCategory(rs.getString("CategoryOfItem"));
 	                	bookingRequest.add(bRequest);
 
 	                }
@@ -172,6 +170,8 @@ public class BookingDao {
 	    }
 	    return bookingRequest;
 	}
+	
+	
 // * Deletes a booking request from the database based on the provided booking ID.
 	
 	public boolean deleteBooking(int bookingId) throws SQLException {
@@ -187,4 +187,44 @@ public class BookingDao {
 		}
 		return true;
 	}
+	
+	
+	
+	//Select a detail through the email
+	
+	public static List<BookingRequest> getThroughEmail(String UserEmail) throws DAOException, SQLException{
+		List<BookingRequest> bookingRequest = new ArrayList<>();
+	    try (Connection connection = ConnectionUtil.getConnection()) {
+	        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM booking_Request WHERE userEmail = ?")) {
+	            stmt.setString(1, UserEmail);
+	            try (ResultSet rs = stmt.executeQuery()) {
+	               while(rs.next()) {
+	                	
+	                	Timestamp bookingTimeSql= rs.getTimestamp("bookingTime");
+						LocalDateTime bookingTime = bookingTimeSql.toLocalDateTime();
+						
+	                	BookingRequest bRequest2 = new BookingRequest();
+	                	bRequest2.setBookingId(rs.getInt("bookingId"));
+	                	bRequest2.setProductName(rs.getString("productName"));
+	                	bRequest2.setPhoneNumber(rs.getString("phoneNumber"));
+	                	bRequest2.setBookingStatus(rs.getBoolean("bookingStatus"));
+	                	bRequest2.setImageUrl(rs.getString("imageUrl"));
+	                	bRequest2.setBookingUserName(rs.getString("bookingUserName"));
+	                	bRequest2.setProductAge(rs.getInt("productAge"));
+	                	bRequest2.setBookingTime(bookingTime);
+	                	bRequest2.setBookingCategory(rs.getString("CategoryOfItem"));
+	                	
+	                	bookingRequest.add(bRequest2);
+
+	                }
+	            }
+	           
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        throw e;
+	    }
+	    return bookingRequest;
+	}
 }
+

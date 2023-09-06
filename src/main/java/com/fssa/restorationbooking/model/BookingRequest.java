@@ -262,6 +262,12 @@ public class BookingRequest {
 	}
 
 
+	public void setCategoryOfItem(String categoryOfItemForBuilder) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 
 

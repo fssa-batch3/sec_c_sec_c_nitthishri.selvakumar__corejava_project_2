@@ -1,7 +1,7 @@
 
 package com.fssa.restorationbooking.model;
 
-public interface BookingErrors {
+public class BookingErrors {
 
     // Error message when the booking detail is null
     public static final String INVALID_OBJECT = "booking detail cannot be null";

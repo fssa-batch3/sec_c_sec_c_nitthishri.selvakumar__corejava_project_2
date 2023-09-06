@@ -1,7 +1,7 @@
 
 package com.fssa.restorationbooking.enums;
 
-public enum CategoryOfItem {
+public enum CategoryOfItem { 
 
     // Enum constants with their corresponding booking categories
     HOME_FURNITURE("HOME_FURNITURE"),

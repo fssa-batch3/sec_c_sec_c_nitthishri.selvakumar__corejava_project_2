@@ -22,7 +22,7 @@ public class TestbookingServiceValidation {
      
     public  static BookingRequest getBooking() {
         BookingRequest booking = new BookingRequest("kavi@gmail.com", "antiquetable", "6380628123", false,
-                "https://iili.io/HZ8lwOX.png", "Sandeep", "AMPLIFIER", 23, 3);
+                "https://iili.io/HZ8lwOX.png", "Nitthi", "AMPLIFIER", 23, 1);
  
         
          
@@ -80,7 +80,7 @@ public class TestbookingServiceValidation {
     public void testUpdateBooking() throws DAOException, SQLException {
         BookingRequest booking = getBooking();
         BookingService bookingService = getBookingService();
-
+ 
         Assertions.assertTrue(bookingService.updateBooking(booking));
     }
 
@@ -100,20 +100,28 @@ public class TestbookingServiceValidation {
     public void testGetParticularBookingDetails() throws DAOException, SQLException {
         BookingService bookingService = getBookingService();
         List<BookingRequest> bookingList = bookingService.getParticularBooking(3);
-        for(BookingRequest ele:bookingList) {
-        	Logger.info(ele);
-        }
-        
-       
-        
+//        for(BookingRequest ele:bookingList) {
+//        	Logger.info(ele);
+//        } 
     }
     @Test
     public void testGetAllBookings() throws DAOException, SQLException {
     	 BookingService bookingService = getBookingService();
          List<BookingRequest> bookingList1 = bookingService.getFullBooking();
-         for(BookingRequest ele:bookingList1) {
-         	Logger.info(ele);
-         }
+//         for(BookingRequest ele:bookingList1) {
+//         	Logger.info(ele);
+//         }
          
     }
+    
+    @Test
+    public void testGetThroughEmail() throws DAOException, SQLException {
+        BookingService bookingService = getBookingService();
+        List<BookingRequest> bookingList2 = bookingService.getThroughEmail("kavi@gmail.com");
+        for(BookingRequest ele:bookingList2) {
+        	Logger.info(ele);
+        } 
+
+    }
+    
 }

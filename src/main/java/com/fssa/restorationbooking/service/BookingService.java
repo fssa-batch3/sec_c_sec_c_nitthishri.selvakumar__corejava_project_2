@@ -61,6 +61,10 @@ public class BookingService {
 		BookingDao bookingDao1 = new BookingDao();
 		return BookingDao.getAllBookings();
 	}
+	public static List<BookingRequest> getThroughEmail(String userEmail) throws DAOException, SQLException {
+		return BookingDao.getThroughEmail(userEmail);
+
+	}
 
 //	public static void main(String[] args) throws DAOException, SQLException {
 ////		BookingDao book = new BookingDao();
