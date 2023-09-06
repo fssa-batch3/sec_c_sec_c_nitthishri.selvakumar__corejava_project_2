@@ -10,14 +10,14 @@ public class ConnectionUtil {
 		Connection con = null;
 
 		String url, userName, passWord;
-
-		url = System.getenv("DATABASE_HOST");
-		userName = System.getenv("DATABASE_USERNAME");
-		passWord = System.getenv("DATABASE_PASSWORD");
 //
-//	url = "jdbc:mysql://localhost:3306/blackwoodalley";
-//	userName ="root";
-//	passWord ="root";
+//		url = System.getenv("DATABASE_HOST");
+//		userName = System.getenv("DATABASE_USERNAME");
+//		passWord = System.getenv("DATABASE_PASSWORD");
+
+	url = "jdbc:mysql://localhost:3306/blackwoodalley";
+	userName ="root";
+	passWord ="root";
 
 		try {
 			// Load the MySQL JDBC driver

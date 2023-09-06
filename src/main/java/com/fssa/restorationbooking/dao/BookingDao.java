@@ -21,19 +21,7 @@ public class BookingDao {
 	// Logger instance to record log messages
 	static Logger logger = new Logger();
 
-//	public static void main(String[] args) throws SQLException, DAOException {
-//		// Create a BookingRequest object with sample data
-//		BookingRequest booking = new BookingRequest("vishui@gmail.com", "antique clock", "6380628123", false,
-//				"https://iili.io/HZ8lwOX.png", "nitthi", LocalDateTime.of(2023, 8, 3, 22, 0), CategoryOfItem.CAMERA, 24,
-//				59);
-//
-//		// Call the addBooking method to insert the booking into the database
-//		addBooking(booking);
-//
-//		// Call other methods for testing (e.g., getAllBookings, updateBooking,
-//		// deleteBooking)
-//		// getupdate();
-//	} 
+ 
 
 //	  Adds a new booking request to the database.
 
@@ -55,7 +43,7 @@ public class BookingDao {
 				preparedStatement.setBoolean(4, false);
 				preparedStatement.setString(5, booking.getImageUrl());
 				preparedStatement.setString(6, booking.getBookingUserName());
-//				preparedStatement.setTimestamp(7, Timestamp.valueOf(booking.getBookingTime()));
+
 				preparedStatement.setString(7, booking.getCategoryOfItem()+"");
 				preparedStatement.setInt(8, booking.getProductAge());
 
@@ -87,7 +75,6 @@ public class BookingDao {
 				preparedStatement.setBoolean(4, booking.isBookingStatus());
 				preparedStatement.setString(5, booking.getImageUrl());
 				preparedStatement.setString(6, booking.getBookingUserName());
-//				preparedStatement.setTimestamp(7, Timestamp.valueOf(booking.getBookingTime()));
 				preparedStatement.setString(7, booking.getBookingCategory());
 				preparedStatement.setInt(8, booking.getProductAge());
 				preparedStatement.setInt(9, booking.getBookingId()); // Set bookingid for the update condition
@@ -117,8 +104,7 @@ public class BookingDao {
 	                	bRequest.setImageUrl(rs.getString("imageUrl"));
 	                	bRequest.setBookingUserName(rs.getString("bookingUserName"));
 	                	bRequest.setProductAge(rs.getInt("productAge"));
-//	                	CategoryOfItem cate = CategoryOfItem.valueOf(rs.getString("categoryOfItem"));
-//	                	bRequest.setCategoryOfItem(cate);
+
 	                	bRequest.setBookingCategory(rs.getString("CategoryOfItem"));
 	                	bookingRequest.add(bRequest);
 

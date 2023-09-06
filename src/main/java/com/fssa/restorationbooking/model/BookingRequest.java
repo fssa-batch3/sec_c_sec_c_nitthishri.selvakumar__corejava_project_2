@@ -71,7 +71,7 @@ public class BookingRequest {
 		this.bookingStatus = bookingStatus;
 		this.imageUrl = imageUrl; 
 		this.bookingUserName = bookingUserName;
-		this.bookingTime1 = bookingTime1;
+//		this.bookingTime1 = bookingTime1;
 		this.categoryOfItem = categoryOfItem;
 		this.productAge = productAge;
 	}
@@ -87,7 +87,7 @@ public class BookingRequest {
 		this.bookingStatus = bookingStatus;
 		this.imageUrl = imageUrl; 
 		this.bookingUserName = bookingUserName;
-		this.bookingTime1 = bookingTime1;
+//		this.bookingTime1 = bookingTime1;
 		this.categoryOfItem = amplifier;
 		this.bookingId = bookingId;
 		this.productAge = productAge;

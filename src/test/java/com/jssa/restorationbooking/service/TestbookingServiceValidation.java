@@ -100,17 +100,17 @@ public class TestbookingServiceValidation {
     public void testGetParticularBookingDetails() throws DAOException, SQLException {
         BookingService bookingService = getBookingService();
         List<BookingRequest> bookingList = bookingService.getParticularBooking(3);
-//        for(BookingRequest ele:bookingList) {
-//        	Logger.info(ele);
-//        } 
+        for(BookingRequest ele:bookingList) {
+        	Logger.info(ele);
+        } 
     }
     @Test
     public void testGetAllBookings() throws DAOException, SQLException {
     	 BookingService bookingService = getBookingService();
          List<BookingRequest> bookingList1 = bookingService.getFullBooking();
-//         for(BookingRequest ele:bookingList1) {
-//         	Logger.info(ele);
-//         }
+         for(BookingRequest ele:bookingList1) {
+         	Logger.info(ele);
+         }
          
     }
     
