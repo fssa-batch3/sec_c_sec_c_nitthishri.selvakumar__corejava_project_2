@@ -22,7 +22,7 @@ public class TestbookingServiceValidation {
      
     public  static BookingRequest getBooking() {
         BookingRequest booking = new BookingRequest("kavi@gmail.com", "antiquetable", "6380628123", false,
-                "https://iili.io/HZ8lwOX.png", "Nitthi", "AMPLIFIER", 23, 1);
+                "https://iili.io/HZ8lwOX.png", "Nitthi", "AMPLIFIER", 23, 7);
  
         
          
@@ -90,7 +90,7 @@ public class TestbookingServiceValidation {
     @Test
     public void testDeleteBooking() throws DAOException, SQLException {
         BookingService bookingService = getBookingService();
-        Assertions.assertTrue(bookingService.deleteBooking(1));
+        Assertions.assertTrue(bookingService.deleteBooking(7));
     }
 
    

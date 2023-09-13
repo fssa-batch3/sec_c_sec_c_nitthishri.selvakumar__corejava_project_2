@@ -15,9 +15,7 @@ public class ConnectionUtil {
 		userName = System.getenv("DATABASE_USERNAME");
 		passWord = System.getenv("DATABASE_PASSWORD");
 
-//	url = "jdbc:mysql://localhost:3306/blackwoodalley";
-//	userName ="root";
-//	passWord ="root";
+
 
 		try {
 			// Load the MySQL JDBC driver

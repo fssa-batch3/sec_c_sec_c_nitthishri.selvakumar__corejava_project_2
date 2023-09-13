@@ -30,7 +30,7 @@ public class BookingDao {
 			// Convert LocalDateTime to Timestamp
 
 			// SQL query to insert a new booking request
-			String query = "INSERT INTO booking_Request(userEmail, productName, phoneNumber, bookingStatus, imageUrl, bookingUserName, categoryOfItem,productAge) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO booking_request(userEmail, productName, phoneNumber, bookingStatus, imageUrl, bookingUserName, categoryOfItem,productAge) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 			// Prepare and execute the SQL statement
 			try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -53,7 +53,7 @@ public class BookingDao {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			throw ex;
-		}
+		} 
 
 		// Return true to indicate successful booking addition
 		return true;
@@ -66,7 +66,7 @@ public class BookingDao {
 //	  Updates an existing booking request in the database.
 	
 	public static boolean updateBooking(BookingRequest booking) throws SQLException {
-		String query = "UPDATE booking_Request SET userEmail = ?, productName = ?, phoneNumber = ?, bookingStatus = ?, imageUrl = ?, bookingUserName = ?, categoryOfItem = ?, productAge = ? WHERE bookingid = ?";
+		String query = "UPDATE booking_request SET userEmail = ?, productName = ?, phoneNumber = ?, bookingStatus = ?, imageUrl = ?, bookingUserName = ?, categoryOfItem = ?, productAge = ? WHERE bookingid = ?";
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 				preparedStatement.setString(1, booking.getUserEmail());
@@ -91,7 +91,7 @@ public class BookingDao {
 	public static List<BookingRequest> getSelectedBookings(int BookingId) throws DAOException, SQLException{
 		List<BookingRequest> bookingRequest = new ArrayList<>();
 	    try (Connection connection = ConnectionUtil.getConnection()) {
-	        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM booking_Request WHERE bookingid = ?")) {
+	        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM booking_request WHERE bookingid = ?")) {
 	            stmt.setInt(1, BookingId);
 	            try (ResultSet rs = stmt.executeQuery()) {
 	                if (rs.next()) {
@@ -123,7 +123,7 @@ public class BookingDao {
 	public static List<BookingRequest> getAllBookings() throws DAOException, SQLException{
 		List<BookingRequest> bookingRequest = new ArrayList<>();
 	    try (Connection connection = ConnectionUtil.getConnection()) {
-	        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM booking_Request")) {
+	        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM booking_request")) {
 	          
 	            try (ResultSet rs = stmt.executeQuery()) {
 	                while (rs.next()) {
@@ -162,7 +162,7 @@ public class BookingDao {
 // * Deletes a booking request from the database based on the provided booking ID.
 	
 	public boolean deleteBooking(int bookingId) throws SQLException {
-		String query = "DELETE FROM booking_Request WHERE bookingid = ?";
+		String query = "DELETE FROM booking_request WHERE bookingid = ?";
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 				preparedStatement.setInt(1, bookingId);
@@ -182,7 +182,7 @@ public class BookingDao {
 	public static List<BookingRequest> getThroughEmail(String UserEmail) throws DAOException, SQLException{
 		List<BookingRequest> bookingRequest = new ArrayList<>();
 	    try (Connection connection = ConnectionUtil.getConnection()) {
-	        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM booking_Request WHERE userEmail = ?")) {
+	        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM booking_request WHERE userEmail = ?")) {
 	            stmt.setString(1, UserEmail);
 	            try (ResultSet rs = stmt.executeQuery()) {
 	               while(rs.next()) {

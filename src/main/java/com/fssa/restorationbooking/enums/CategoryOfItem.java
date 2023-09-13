@@ -6,7 +6,7 @@ public enum CategoryOfItem {
     // Enum constants with their corresponding booking categories
     HOME_FURNITURE("HOME_FURNITURE"),
     RADIO("RADIO"),
-    CAMERA("CAMERA"),
+    CAMERA("CAMERA"), 
     VOICE_RECORDER("VOICE_RECORDER"),
     VINTAGE_SWITCH("VINTAG_SWITCH"),
     GRAMOPHONE("GRAMOPHONE"),
