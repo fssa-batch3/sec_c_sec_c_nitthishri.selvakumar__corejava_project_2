@@ -1,5 +1,5 @@
+package com.fss.restorationbooking.errors;
 
-package com.fssa.restorationbooking.model;
 
 public class BookingErrors {
 

@@ -2,10 +2,10 @@ package com.fssa.restorationbooking.service;
 
 import java.sql.SQLException;
 
+import com.fss.restorationbooking.errors.InvalidInputException;
 import com.fssa.restorationbooking.dao.DAOException;
 import com.fssa.restorationbooking.dao.UserDAO;
 import com.fssa.restorationbooking.model.User;
-import com.fssa.restorationbooking.validation.InvalidInputException;
 import com.fssa.restorationbooking.validation.UserValidator;
 import com.google.protobuf.ServiceException;
 

@@ -1,12 +1,10 @@
 package com.fssa.restorationbooking.service;
 
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fssa.restorationbooking.dao.BookingDao;
 import com.fssa.restorationbooking.dao.DAOException;
-import com.fssa.restorationbooking.enums.CategoryOfItem;
 import com.fssa.restorationbooking.model.BookingRequest;
 import com.fssa.restorationbooking.validation.BookingValidation;
 

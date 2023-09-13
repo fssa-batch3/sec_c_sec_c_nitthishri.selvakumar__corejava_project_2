@@ -1,12 +1,10 @@
 package com.fssa.restorationbooking.validation;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.function.BooleanSupplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.fssa.restorationbooking.model.BookingErrors;
+import com.fss.restorationbooking.errors.BookingErrors;
+import com.fss.restorationbooking.errors.InvalidBookingDetailException;
 import com.fssa.restorationbooking.model.BookingRequest;
 
 public class BookingValidation {

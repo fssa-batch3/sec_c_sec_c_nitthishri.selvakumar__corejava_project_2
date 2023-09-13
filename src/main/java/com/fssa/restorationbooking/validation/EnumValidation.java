@@ -1,7 +1,8 @@
 package com.fssa.restorationbooking.validation;
 
+import com.fss.restorationbooking.errors.BookingErrors;
+import com.fss.restorationbooking.errors.InvalidBookingDetailException;
 import com.fssa.restorationbooking.enums.CategoryOfItem;
-import com.fssa.restorationbooking.model.BookingErrors;
 
 
 public class EnumValidation {

@@ -1,4 +1,6 @@
-package com.fssa.restorationbooking.dao;
+package com.fss.restorationbooking.errors;
+
+
 
 public class InvalidBookingDetailException extends RuntimeException {
 	private static final long serialVersionUID = -8105491977357554060L;
@@ -8,11 +10,9 @@ public class InvalidBookingDetailException extends RuntimeException {
 	}
 	public InvalidBookingDetailException(Throwable te) {
 		super(te);
-		
-	} 
-	
+	}
 	public InvalidBookingDetailException(String msg, Throwable te) {
-		
 		super(msg, te);
 	}
+
 }

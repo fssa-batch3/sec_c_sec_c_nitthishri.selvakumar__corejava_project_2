@@ -1,4 +1,5 @@
-package com.fssa.restorationbooking.validation;
+package com.fss.restorationbooking.errors;
+
 
 public class InvalidInputException  extends  Exception{
     
