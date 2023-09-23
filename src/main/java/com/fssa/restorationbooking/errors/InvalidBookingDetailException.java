@@ -1,4 +1,4 @@
-package com.fss.restorationbooking.errors;
+package com.fssa.restorationbooking.errors;
 
 
 
@@ -7,7 +7,7 @@ public class InvalidBookingDetailException extends RuntimeException {
 	// Calling each super constructors for each of the types
 	public InvalidBookingDetailException(String msg) {
 		super(msg);
-	}
+	} 
 	public InvalidBookingDetailException(Throwable te) {
 		super(te);
 	}

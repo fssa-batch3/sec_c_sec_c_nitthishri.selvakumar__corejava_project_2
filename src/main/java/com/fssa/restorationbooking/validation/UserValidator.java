@@ -2,8 +2,8 @@ package com.fssa.restorationbooking.validation;
 
 import java.util.regex.Pattern;
 
-import com.fss.restorationbooking.errors.InvalidInputException;
-import com.fss.restorationbooking.errors.UserErrors;
+import com.fssa.restorationbooking.errors.InvalidInputException;
+import com.fssa.restorationbooking.errors.UserErrors;
 import com.fssa.restorationbooking.model.User;
 import com.fssa.restorationbooking.regex.UserValidationRegex;
 

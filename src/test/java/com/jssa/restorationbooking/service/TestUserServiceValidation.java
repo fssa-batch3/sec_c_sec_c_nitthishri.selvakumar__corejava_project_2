@@ -24,7 +24,7 @@ class TestUserServiceValidation {
         return user;
     }
 
-    @Test
+    @Test 
     void testValidUserSignUp() {
         User user = getUser();
         assertDoesNotThrow(() -> userService.userSignUp(user));
@@ -40,16 +40,15 @@ class TestUserServiceValidation {
     @Test
     void testValidUserLogin() throws ServiceException {
     	
-    	Assertions.assertTrue(userService.userLogin("nitthi@gmail.com", "Nitthi@0104"));
+    	Assertions.assertTrue(userService.userLogin("blackwoodalley@gmail.com","Nitthi@0104"));
 //    	assertDoesNotThrow(() -> userService.userLogin("testuser01@gmail.com", "P@$$w0rd"));
     }
-
+ 
     @Test
     void testUserLoginInvalidInput() {
         assertThrows(ServiceException.class, () -> userService.userLogin("", "weakPassword"));
     }
 
- 
 
     @Test
     void testDeleteUserValidInput() {

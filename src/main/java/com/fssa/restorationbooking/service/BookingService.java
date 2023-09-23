@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.fssa.restorationbooking.dao.BookingDao;
-import com.fssa.restorationbooking.dao.DAOException;
+import com.fssa.restorationbooking.errors.DAOException;
 import com.fssa.restorationbooking.model.BookingRequest;
 import com.fssa.restorationbooking.validation.BookingValidation;
 
@@ -18,10 +18,10 @@ public class BookingService {
 		this.bookingDao = bookingDao;
 
 	}
-
-	public BookingService() {
-
-	}
+	   public BookingService() {
+	        this.bookingDao = new BookingDao(); // Initialize the DAO instance
+	    }
+	
 
 	public boolean addBooking(BookingRequest booking) throws DAOException, SQLException {
 		if (BookingValidation.validateBookingDetails(booking)) {
@@ -29,14 +29,19 @@ public class BookingService {
 		} else {
 			return false;
 		}
-	}
+	} 
 
 	public boolean updateBooking(BookingRequest booking) throws DAOException, SQLException {
 		if (BookingValidation.validateBookingDetails(booking)) {
-			return BookingDao.updateBooking(booking);
-		} else {
-			return false;
+			try {
+				return BookingDao.updateBooking(booking);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			} 
 		}
+		return true; 
 	}
 
 	public boolean deleteBooking(int bookingId) throws DAOException, SQLException {
@@ -45,10 +50,10 @@ public class BookingService {
 			return bookingDao.deleteBooking(bookingId);
 
 		} else {
-			return false;
+			return false; 
 		}
 	}
-
+ 
 	public List<BookingRequest> getParticularBooking(int bookingId) throws DAOException, SQLException {
 		BookingDao bookingDao = new BookingDao();
 		return BookingDao.getSelectedBookings(bookingId);
@@ -59,11 +64,34 @@ public class BookingService {
 		BookingDao bookingDao1 = new BookingDao();
 		return BookingDao.getAllBookings();
 	}
+	
 	public static List<BookingRequest> getThroughEmail(String userEmail) throws DAOException, SQLException {
+		
 		return BookingDao.getThroughEmail(userEmail);
 
 	}
 
+	
+	public boolean updateStatus(int bookingId,int status, String reason) {
+		if(BookingValidation.bookingIdValidator(bookingId)) {
+			return BookingDao.updateStatusInDatabase(bookingId,status,reason);
+		}
+		else {
+			return false;
+		}
+		
+		
+	}
+	
+	public boolean updatePickupId(int bookingId, int pickupId) {
+		if(BookingValidation.bookingIdValidator(bookingId)) {
+		return BookingDao.updatePickupId(bookingId,pickupId);
+		}
+		else {
+			return false;
+		}
+		
+	}
 //	public static void main(String[] args) throws DAOException, SQLException {
 ////		BookingDao book = new BookingDao();
 ////		BookingValidation validBooking = new BookingValidation();
@@ -81,5 +109,5 @@ public class BookingService {
 //			System.out.println(e.getBookingUserName() + e.getImageUrl() + e.getPhoneNumber());
 //		}
 //
-//	}
+//	} 
 }

@@ -1,9 +1,11 @@
 package com.fssa.restorationbooking.validation;
 
 import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.Test;
 
-import com.fssa.restorationbooking.model.BookingErrors;
+import com.fssa.restorationbooking.errors.BookingErrors;
+import com.fssa.restorationbooking.errors.InvalidBookingDetailException;
 
 public class TestbookingValidation {
 
@@ -11,7 +13,7 @@ public class TestbookingValidation {
 
 	@Test
 	void testInvalidateBookingDetails() {
-		try {
+		try { 
 			BookingValidation.validateBookingDetails(null);
 			Assertions.fail(BookingErrors.INVALID_METHOD);
 		} catch (InvalidBookingDetailException e) {
@@ -177,6 +179,7 @@ public class TestbookingValidation {
 	}
 
 //				test for valid booking Id
+	
 	@Test
 	 void testValidAgeValidator() {
 		Assertions.assertTrue(BookingValidation.productAgeValidator(23));

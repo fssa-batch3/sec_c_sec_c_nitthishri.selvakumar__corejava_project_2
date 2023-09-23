@@ -1,9 +1,9 @@
-package com.fss.restorationbooking.errors;
+package com.fssa.restorationbooking.errors;
 
 
 public class BookingErrors {
 
-    // Error message when the booking detail is null
+    // Error message when the booking detail is null 
     public static final String INVALID_OBJECT = "booking detail cannot be null";
 
     // Error message when the name is null or has less than 3 characters

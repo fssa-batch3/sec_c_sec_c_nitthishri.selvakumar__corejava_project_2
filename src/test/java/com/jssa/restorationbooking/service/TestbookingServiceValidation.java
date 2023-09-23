@@ -7,13 +7,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.restorationbooking.dao.BookingDao;
-import com.fssa.restorationbooking.dao.DAOException;
-import com.fssa.restorationbooking.enums.CategoryOfItem;
+import com.fssa.restorationbooking.errors.DAOException;
 import com.fssa.restorationbooking.model.BookingRequest;
 import com.fssa.restorationbooking.service.BookingService;
 import com.fssa.restorationbooking.util.Logger;
 import com.fssa.restorationbooking.validation.BookingValidation;
-
 public class TestbookingServiceValidation {
 
  
@@ -21,8 +19,8 @@ public class TestbookingServiceValidation {
 // Creates and returns a sample BookingRequest object for testing.
      
     public  static BookingRequest getBooking() {
-        BookingRequest booking = new BookingRequest("kavi@gmail.com", "antiquetable", "6380628123", false,
-                "https://iili.io/HZ8lwOX.png", "Nitthi", "AMPLIFIER", 23, 7);
+        BookingRequest booking = new BookingRequest("kavi@gmail.com", "antiquetable", "6380628123", 1,
+                "https://iili.io/HZ8lwOX.png", "Ramana", "AMPLIFIER", 23,"no spare",11);
  
         
          
@@ -40,6 +38,13 @@ public class TestbookingServiceValidation {
         
         return booking;
     }
+    
+    public  static BookingRequest getBooking2() {
+        BookingRequest booking2 = new BookingRequest("kavi@gmail.com", "antiquetable", "6380628123",
+                "https://iili.io/HZ8lwOX.png", "Madhuma",23, 12);
+		return booking2;
+    }
+ 
 //CategoryOfItem.valueOf()
   
 //  Creates and returns another sample BookingRequest object for testing.
@@ -78,10 +83,11 @@ public class TestbookingServiceValidation {
     
     @Test
     public void testUpdateBooking() throws DAOException, SQLException {
-        BookingRequest booking = getBooking();
+        BookingRequest book = getBooking2();
         BookingService bookingService = getBookingService();
  
-        Assertions.assertTrue(bookingService.updateBooking(booking));
+        Assertions.assertTrue(bookingService.updateBooking(book));
+        
     }
 
 
@@ -119,9 +125,23 @@ public class TestbookingServiceValidation {
         BookingService bookingService = getBookingService();
         List<BookingRequest> bookingList2 = bookingService.getThroughEmail("kavi@gmail.com");
         for(BookingRequest ele:bookingList2) {
-        	Logger.info(ele);
+        	Logger.info(ele); 
         } 
 
+    } 
+    
+    @Test
+    public void testUpdateStatus() throws DAOException, SQLException {
+    	BookingService bookingSerice = getBookingService();
+    	Assertions.assertTrue(bookingService.updateStatus(1,2,"there is no spare parts"));
+    	
+    }
+    
+    @Test 
+    public void testUpdatePickupId()throws DAOException, SQLException {
+    	BookingService bookingSerice = getBookingService();
+    	Assertions.assertTrue(bookingService.updatePickupId(1,2));
+   
     }
     
 }

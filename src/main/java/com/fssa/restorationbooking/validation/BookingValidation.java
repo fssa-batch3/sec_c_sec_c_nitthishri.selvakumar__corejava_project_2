@@ -3,8 +3,8 @@ package com.fssa.restorationbooking.validation;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.fss.restorationbooking.errors.BookingErrors;
-import com.fss.restorationbooking.errors.InvalidBookingDetailException;
+import com.fssa.restorationbooking.errors.BookingErrors;
+import com.fssa.restorationbooking.errors.InvalidBookingDetailException;
 import com.fssa.restorationbooking.model.BookingRequest;
 
 public class BookingValidation {
@@ -15,7 +15,6 @@ public class BookingValidation {
 		} else { 
 			emailValidator(bookingDetails.getUserEmail());
 			productNameValidator(bookingDetails.getProductName());
-
 			phoneNumberValidator(bookingDetails.getPhoneNumber());
 			// bookingStatusValidation(bookingDetails.isBookingStatus());
 			imageUrlValidator(bookingDetails.getImageUrl());
@@ -24,7 +23,7 @@ public class BookingValidation {
 			productAgeValidator(bookingDetails.getProductAge());
 //			validateProductLastRepair(bookingDetails.getProductLastRepair());
 		}
-
+  
 		return true;
 
 	}
@@ -94,7 +93,7 @@ public class BookingValidation {
 		}
 
 //    regex pattern for India's phone number format
-		String numberregex = "[2-9][0-9]{9}";
+		String numberregex = "[2-9][0-9]{9}";  
 		Pattern pattern = Pattern.compile(numberregex);
 		Matcher matcher = pattern.matcher(phoneNumber);
 		Boolean isMatchPhoneNumber = matcher.matches();
@@ -162,6 +161,8 @@ public class BookingValidation {
 
 		return true;
 	}
+
+
 
 
 

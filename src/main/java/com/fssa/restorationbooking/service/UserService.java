@@ -2,16 +2,16 @@ package com.fssa.restorationbooking.service;
 
 import java.sql.SQLException;
 
-import com.fss.restorationbooking.errors.InvalidInputException;
-import com.fssa.restorationbooking.dao.DAOException;
-import com.fssa.restorationbooking.dao.UserDAO;
+import com.fssa.restorationbooking.dao.UserDao;
+import com.fssa.restorationbooking.errors.DAOException;
+import com.fssa.restorationbooking.errors.InvalidInputException;
 import com.fssa.restorationbooking.model.User;
 import com.fssa.restorationbooking.validation.UserValidator;
 import com.google.protobuf.ServiceException;
 
 public class UserService {
 
-	UserDAO userDAO = new UserDAO();
+	UserDao userDAO = new UserDao();
 
 	public boolean userSignUp(User user) throws ServiceException {
 
@@ -24,7 +24,7 @@ public class UserService {
 
 		return false;
 
-	}
+	} 
 
 	public boolean deleteUser(String emailId) throws ServiceException {
 	    try {
@@ -59,7 +59,7 @@ public class UserService {
 	            // Handle the case where email or password validation fails
 	            return false;
 	        }
-	    } catch (InvalidInputException e) {
+	    } catch (InvalidInputException e) { 
 	        // Handle validation errors
 	        throw new ServiceException("Invalid input: " + e.getMessage());
 	    } catch (DAOException | SQLException e) {

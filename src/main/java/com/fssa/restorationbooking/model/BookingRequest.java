@@ -26,10 +26,38 @@ public class BookingRequest {
 	private String productName;
 	private int bookingId;
 	private String phoneNumber;
-	private boolean bookingStatus;
+	private int bookingStatus;
 	private String imageUrl;
 	private String bookingUserName;
 	public String categoryOfItem;
+	public String reason;
+	public int PickUpId;
+	public int getPickUpId() {
+		return PickUpId;
+	}
+
+
+	public void setPickUpId(int pickUpId) {
+		PickUpId = pickUpId;
+	}
+
+
+	public int getBookingStatus() {
+		return bookingStatus;
+	}
+
+
+	public String getReason() {
+		return reason;
+	}
+
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+
+	
 	
 	
 	public void setBookingCategory(String categoryOfItem) {
@@ -61,25 +89,9 @@ public class BookingRequest {
 	
 
 
-	
-	public BookingRequest(String userEmail, String productName, String phoneNumber, boolean bookingStatus,
-			String imageUrl, String bookingUserName, String categoryOfItem,int productAge){
-			
-		this.userEmail = userEmail;
-		this.productName = productName;
-		this.phoneNumber = phoneNumber;
-		this.bookingStatus = bookingStatus;
-		this.imageUrl = imageUrl; 
-		this.bookingUserName = bookingUserName;
-//		this.bookingTime1 = bookingTime1;
-		this.categoryOfItem = categoryOfItem;
-		this.productAge = productAge;
-	}
-
-
 	// Constructor with all the properties as parameters
-	public BookingRequest(String userEmail, String productName, String phoneNumber, boolean bookingStatus,
-			String imageUrl, String bookingUserName, String amplifier,int productAge,int bookingId){
+	public BookingRequest(String userEmail, String productName, String phoneNumber, int bookingStatus,
+			String imageUrl, String bookingUserName, String amplifier,int productAge,String reason, int bookingId){
 			
 		this.userEmail = userEmail;
 		this.productName = productName;
@@ -89,8 +101,9 @@ public class BookingRequest {
 		this.bookingUserName = bookingUserName;
 //		this.bookingTime1 = bookingTime1;
 		this.categoryOfItem = amplifier;
-		this.bookingId = bookingId;
 		this.productAge = productAge;
+		this.reason = reason;
+		this.bookingId =bookingId;
 	}
 
 	// Default constructor
@@ -102,6 +115,21 @@ public class BookingRequest {
 //	  Get the email address of the user who made the booking.
 	
 	
+
+	public BookingRequest(String userEmail, String productName, String phoneNumber, String imageUrl,String bookingUserName, int productAge, int bookingid) {
+		// TODO Auto-generated constructor stub
+		
+		this.userEmail = userEmail;
+		this.productName = productName;
+		this.phoneNumber = phoneNumber;
+		
+		this.imageUrl = imageUrl; 
+		this.bookingUserName = bookingUserName;
+//		this.bookingTime1 = bookingTime1;
+		this.productAge = productAge;
+		this.bookingId =bookingid;
+	}
+
 
 	public String getUserEmail() {
 		return userEmail;
@@ -161,14 +189,14 @@ public class BookingRequest {
 	
 //	  Check if the booking status is confirmed.
 	
-	public boolean isBookingStatus() {
+	public int isBookingStatus() {
 		return bookingStatus;
 	}
 
 	
 //	  Set the booking status.
 	 
-	public void setBookingStatus(boolean bookingStatus) {
+	public void setBookingStatus(int bookingStatus) {
 		this.bookingStatus = bookingStatus;
 	}
 
@@ -251,7 +279,7 @@ public class BookingRequest {
 		return "BookingRequest [userEmail=" + userEmail + ", productName=" + productName + ", bookingId=" + bookingId
 				+ ", phoneNumber=" + phoneNumber + ", bookingStatus=" + bookingStatus + ", imageUrl=" + imageUrl
 				+ ", bookingUserName=" + bookingUserName + ", categoryOfItem=" + categoryOfItem + ", bookingTime1="
-				+ bookingTime1 + ", productAge=" + productAge + "]";
+				+ bookingTime1 + ", productAge=" + productAge+ ", reason=" + reason + "]";
 	}
 
 
@@ -266,17 +294,6 @@ public class BookingRequest {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-
-
-
-
-//
-//	public String getBookingCategory() {
-//		// TODO Auto-generated method stub
-//		return categoryOfItem;
-//	}
+	
 
 }

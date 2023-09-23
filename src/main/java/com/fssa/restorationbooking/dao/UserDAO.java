@@ -5,20 +5,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.fssa.restorationbooking.errors.DAOException;
 import com.fssa.restorationbooking.model.User;
 import com.fssa.restorationbooking.util.ConnectionUtil;
 
-public class UserDAO {
+public class UserDao {
 
 	public boolean userRegistration(User user) throws DAOException {
 		try (Connection connection = ConnectionUtil.getConnection()) {
 
-			String insertQuery = "INSERT INTO users (email_id, user_name, password) VALUES (?, ?, ?)";
+			String insertQuery = "INSERT INTO users(email_id, user_name, password) VALUES (?, ?, ?)";
 			try (PreparedStatement psmt = connection.prepareStatement(insertQuery)) {
 
 				psmt.setString(1, user.getEmailId());
 				psmt.setString(2, user.getUserName());
-				psmt.setString(3, user.getPassword());
+				psmt.setString(3, user.getPassword()); 
 
 				int rowAffected = psmt.executeUpdate();
 				return rowAffected > 0;
@@ -31,7 +32,7 @@ public class UserDAO {
 	public boolean deleteUser(String emailId) throws DAOException, SQLException {
 		try (Connection connection = ConnectionUtil.getConnection()) {
 
-			String deleteQuery = "DELETE FROM users WHERE email_Id = ?";
+			String deleteQuery = "DELETE FROM users WHERE email_id = ?";
 			try (PreparedStatement psmt = connection.prepareStatement(deleteQuery)) {
 
 				psmt.setString(1, emailId);
@@ -67,7 +68,7 @@ public class UserDAO {
 	}
 
 	public static void main(String[] args) throws DAOException, SQLException {
-		UserDAO user = new UserDAO();
+		UserDao user = new UserDao();
 		System.out.println(user.emailExists("jallel@gmail.com"));
 	}
 
@@ -118,11 +119,11 @@ public class UserDAO {
 		return null; // User not found
 	}
 
+	
 	public boolean updateUserProfile(User user) throws DAOException {
 		String updateQuery = "UPDATE users SET user_name = ?, password = ? WHERE email_Id = ?";
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement psmt = connection.prepareStatement(updateQuery)) {
-
 			psmt.setString(1, user.getUserName());
 			psmt.setString(2, user.getPassword());
 			psmt.setString(3, user.getEmailId());

@@ -1,4 +1,4 @@
-package com.fss.restorationbooking.errors;
+package com.fssa.restorationbooking.errors;
 
 
 public class UserErrors {
