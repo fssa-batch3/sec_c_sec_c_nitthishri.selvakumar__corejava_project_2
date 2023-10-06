@@ -43,16 +43,18 @@ public class PickupService {
 
 	    public boolean updatePickup(PickupRequest pickup) throws DAOException, SQLException {
 	        try {
-				if (pickupValidation.validatePickUpDetails(pickup)) {
-				    try {
-				        return pickupDao.updatePickupRequest(pickup);
-				    } catch (SQLException e) {
-				        e.printStackTrace();
-				    }
+				try {
+					if (pickupValidation.validatePickUpDetails1(pickup)) {
+					    try {
+					        return pickupDao.updatePickupRequest(pickup);
+					    } catch (SQLException e) {
+					        e.printStackTrace();
+					    }
+					}
+				} catch (InvalidPickUpDetailException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-			} catch (InvalidPickUpDetailException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			} catch (DAOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -32,14 +32,8 @@ public class PickupRequest {
 	} 
 
 
-
-	public PickupRequest() {
-		// TODO Auto-generated constructor stub
-		super();
-	}
-
 	public PickupRequest(String PickupName, long PickupPhoneNumber, String PickupAddress, String PickupLandMark,
-			int PickupPincode, LocalDate PickupDate, LocalTime PickupTime,int PickupId) {
+			int PickupPincode, LocalDate PickupDate, LocalTime PickupTime,int BookId) {
 
 		this.PickupName = PickupName;
 		this.PickupPhoneNumber = PickupPhoneNumber;
@@ -48,12 +42,16 @@ public class PickupRequest {
 		this.PickupPincode = PickupPincode;
 		this.PickupDate = PickupDate;
 		this.PickupTime = PickupTime;
-		this.PickupId = PickupId;
+		this.BookId = BookId;
 	
 
 	}
 
 
+	public PickupRequest() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
 
 	public String getEmail() {
 		return Email;

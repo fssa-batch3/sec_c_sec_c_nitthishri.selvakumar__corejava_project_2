@@ -30,6 +30,7 @@ public class PickupErrors {
     public static final String INVALID_TIME ="pickup Time detail want to be from 9am to 7pm";
    
     
- 
+    // Error message when the pickup detail is null
+    public static final String INVALID_ADDRESS = "pickup address is wrong";
     
 }

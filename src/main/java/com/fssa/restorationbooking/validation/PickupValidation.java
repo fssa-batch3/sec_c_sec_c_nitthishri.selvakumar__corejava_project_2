@@ -33,6 +33,24 @@ public class PickupValidation {
 		return true;
 	}
 	
+	public static boolean validatePickUpDetails1(PickupRequest pickUpDetails) throws InvalidPickUpDetailException {
+		if (pickUpDetails == null) {
+			throw new InvalidPickUpDetailException(PickupErrors.INVALID_OBJECT);
+		}
+		else {
+			pickupNameValidation(pickUpDetails.getPickupName());
+			pickupPhoneNumberValidation(pickUpDetails.getPickupPhoneNumber());
+			pickupAddressValidation(pickUpDetails.getPickupAddress());
+			pickupLandMarkValidation(pickUpDetails.getPickupLandMark());
+			pickupPincodeValidation(pickUpDetails.getPickupPincode());
+			pickupDateValidation(pickUpDetails.getPickupDate());
+			pickupTimeValidation(pickUpDetails.getPickupTime());
+			
+		}
+		
+		return true;
+	}
+	
 	
 	
 	//Method for the validation of the email given during booking
@@ -99,15 +117,25 @@ public class PickupValidation {
 	}
 
 
-	// Method for the validation of the pickup address
-	public static boolean pickupAddressValidation(String pickupAddress) throws InvalidPickUpDetailException {
-		if (pickupAddress == null || pickupAddress.trim().isEmpty()) {
-			throw new InvalidPickUpDetailException(PickupErrors.INVALID_OBJECT);
+	public static boolean pickupAddressValidation(String userAddress) throws InvalidPickUpDetailException {
+		if (userAddress == null || "".equals(userAddress.trim())) {
+			throw new InvalidPickUpDetailException(PickupErrors.INVALID_ADDRESS);
 		}
-		return true;
 
+		/**
+		 * regex pattern for user address
+		 */
+		String descregex = "^[^ .]+( [^ .]+)*$";
+		Pattern pattern = Pattern.compile(descregex);
+		Matcher matcher = pattern.matcher(userAddress);
+		boolean isMatch = matcher.matches();
+
+		if (isMatch) {
+			return true;
+		} else {
+			throw new InvalidPickUpDetailException(PickupErrors.INVALID_ADDRESS);
+		}
 	}
-
 	// Method for the validation of the pickup address
 	public static boolean pickupLandMarkValidation(String pickupLandMark) throws InvalidPickUpDetailException {
 		if (pickupLandMark == null || pickupLandMark.trim().isEmpty()) {
@@ -136,19 +164,19 @@ public class PickupValidation {
 	    return true;
 	}
 
-    public static void pickupDateValidation(LocalDate pickupDate) throws InvalidPickUpDetailException {
-        if (pickupDate == null) {
-            throw new InvalidPickUpDetailException(PickupErrors.INVALID_OBJECT);
-        }
+	  public static void pickupDateValidation(LocalDate pickupDate) throws InvalidPickUpDetailException {
+	        if (pickupDate == null) {
+	            throw new InvalidPickUpDetailException(PickupErrors.INVALID_OBJECT);
+	        }
 
-        LocalDate today = LocalDate.now();
-        LocalDate oneDayFromToday = today.plusDays(2);
+	        LocalDate today = LocalDate.now();
+	        LocalDate oneDayFromToday = today.plusDays(1);
+	        LocalDate tenDaysFromToday = today.plusDays(10);
 
-        if (pickupDate.isBefore(today) || pickupDate.isEqual(today) || pickupDate.isBefore(oneDayFromToday)) {
-            throw new InvalidPickUpDetailException(PickupErrors.INVALID_DATE);
-        }
-
-    }
+	        if (pickupDate.isBefore(oneDayFromToday) || pickupDate.isAfter(tenDaysFromToday)) {
+	            throw new InvalidPickUpDetailException(PickupErrors.INVALID_DATE);
+	        }
+	    }
     
     public static void pickupTimeValidation(LocalTime time) throws InvalidPickUpDetailException {
         if (time == null) {

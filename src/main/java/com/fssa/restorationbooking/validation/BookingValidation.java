@@ -154,7 +154,7 @@ public class BookingValidation {
 
 	public static boolean productAgeValidator(int productAge) {
 
-		if (productAge <= 10) {
+		if (productAge <= 10 || productAge > 1000) {
 			throw new InvalidBookingDetailException(BookingErrors.INVALID_PRODUCTAGE);
 
 		}

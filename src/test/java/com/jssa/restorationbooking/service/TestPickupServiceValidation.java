@@ -19,13 +19,13 @@ public class TestPickupServiceValidation {
     // Creates and returns a sample PickupRequest object for testing.
     public static PickupRequest getPickup() {
     	PickupRequest pickup = new PickupRequest("JohnDoe", 6380628123L, "123 Main St",
-                "Landmark", 638053, LocalDate.of(2023, 9, 27), LocalTime.parse("14:00:00"), "kavi@gmail.com",1);
+                "Landmark", 638053, LocalDate.of(2023, 9, 27), LocalTime.parse("14:00:00"),"kavi@gmail.com",1);
 
         return pickup;
     }
     public static PickupRequest getPickup1() {
-    	PickupRequest pickup = new PickupRequest("Nitthi", 6380628123L, "123 Main St",
-                "Landmark", 638053, LocalDate.of(2023, 9, 27), LocalTime.parse("14:00:00"),1);
+    	PickupRequest pickup = new PickupRequest("Potter", 6380628123L, "123 Main St",
+                "Landmark", 638053, LocalDate.of(2023, 9, 27), LocalTime.parse("14:00:00"),7);
 
         return pickup;
     }

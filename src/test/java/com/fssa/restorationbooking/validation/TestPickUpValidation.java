@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.restorationbooking.errors.BookingErrors;
-import com.fssa.restorationbooking.errors.InvalidBookingDetailException;
 import com.fssa.restorationbooking.errors.InvalidPickUpDetailException;
 import com.fssa.restorationbooking.errors.PickupErrors;
 
@@ -55,6 +54,15 @@ public class TestPickUpValidation {
 	void testInvalidatePickUpDetails() {
 		try {
 			PickupValidation.validatePickUpDetails(null);
+			Assertions.fail(PickupErrors.INVALID_METHOD);
+		} catch (InvalidPickUpDetailException e) {
+			Assertions.assertEquals(PickupErrors.INVALID_OBJECT, e.getMessage());
+		}
+	}
+
+	void testInvalidatePickUpDetails1() {
+		try {
+			PickupValidation.validatePickUpDetails1(null);
 			Assertions.fail(PickupErrors.INVALID_METHOD);
 		} catch (InvalidPickUpDetailException e) {
 			Assertions.assertEquals(PickupErrors.INVALID_OBJECT, e.getMessage());
@@ -134,32 +142,43 @@ public class TestPickUpValidation {
 	    
 
 	    
-	    @Test
-	    void testValidPickupAddress() {
+
+	   	@Test
+	   	void testValidUserAddress() throws InvalidPickUpDetailException {
+
+	   		Assertions.assertTrue(
+	   				PickupValidation.pickupAddressValidation("48/A,Tiruneelakandar street,pattamadai"));
+	   	}
+
+	   	/**
+	   	 * test for invalid user address when it is null.
+	   	 */
+	   	void testInvalidUserAddress() {
+	        // Test for null address
 	        try {
-	            assertTrue(PickupValidation.pickupAddressValidation("123 Main St, City"));
+	            PickupValidation.pickupAddressValidation(null);
+	            Assertions.fail("Expected InvalidPickUpDetailException");
 	        } catch (InvalidPickUpDetailException e) {
-	        	  Assertions.fail(PickupErrors.INVALID_OBJECT);
+	            Assertions.assertEquals(PickupErrors.INVALID_ADDRESS, e.getMessage());
+	        }
+
+	        // Test for an address with less than 15 characters
+	        try {
+	            PickupValidation.pickupAddressValidation("street");
+	            Assertions.fail("Expected InvalidPickUpDetailException");
+	        } catch (InvalidPickUpDetailException e) {
+	            Assertions.assertEquals(PickupErrors.INVALID_ADDRESS, e.getMessage());
+	        }
+
+	        // Test for an address with more than 100 characters
+	        try {
+	            PickupValidation.pickupAddressValidation("This is a very long address with more than 100 characters. It should fail validation.");
+	            Assertions.fail("Expected InvalidPickUpDetailException");
+	        } catch (InvalidPickUpDetailException e) {
+	            Assertions.assertEquals(PickupErrors.INVALID_ADDRESS, e.getMessage());
 	        }
 	    }
 
-	    @Test
-	    void testInvalidPickupAddress() {
-	        try {
-	            PickupValidation.pickupAddressValidation(null);
-	            Assertions.fail(PickupErrors.INVALID_METHOD);
-	        } catch (InvalidPickUpDetailException e) {
-	        	  Assertions.assertEquals(PickupErrors.INVALID_OBJECT, e.getMessage());
-	        }
-	    
-	        try {
-	            PickupValidation.pickupAddressValidation("");
-	            Assertions.fail(PickupErrors.INVALID_METHOD);
-	        } catch (InvalidPickUpDetailException e) {
-	        	  Assertions.assertEquals(PickupErrors.INVALID_OBJECT, e.getMessage());
-	        }
-	    }
-	    
 	    @Test
 	    void testValidPickupLandMark() {
 	        try {
@@ -217,7 +236,6 @@ public class TestPickUpValidation {
 	    
 	       
 }
-
 	    @Test
 	    void testValidPickupDate() {
 	        try {
@@ -235,22 +253,33 @@ public class TestPickUpValidation {
 	            PickupValidation.pickupDateValidation(null);
 	            Assertions.fail(PickupErrors.INVALID_METHOD);
 	        } catch (InvalidPickUpDetailException e) {
-	        	  Assertions.assertEquals(PickupErrors.INVALID_OBJECT, e.getMessage());
+	            assertEquals(PickupErrors.INVALID_OBJECT, e.getMessage());
 	        }
 	    }
 
 	    @Test
-	    void testInvalidPickupDate() {
+	    void testInvalidPickupDateInPast() {
 	        try {
 	            LocalDate today = LocalDate.now();
 	            LocalDate invalidPickupDate = today.minusDays(1); // A date before today
 	            PickupValidation.pickupDateValidation(invalidPickupDate);
-	            Assertions.fail( PickupErrors.INVALID_DATE );
+	            Assertions.fail(PickupErrors.INVALID_DATE);
 	        } catch (InvalidPickUpDetailException e) {
 	            assertEquals(PickupErrors.INVALID_DATE, e.getMessage());
 	        }
 	    }
-	    
+
+	    @Test
+	    void testInvalidPickupDateMoreThan10DaysFromToday() {
+	        try {
+	            LocalDate today = LocalDate.now();
+	            LocalDate invalidPickupDate = today.plusDays(11); // A date more than 10 days from today
+	            PickupValidation.pickupDateValidation(invalidPickupDate);
+	            Assertions.fail(PickupErrors.INVALID_DATE);
+	        } catch (InvalidPickUpDetailException e) {
+	            assertEquals(PickupErrors.INVALID_DATE, e.getMessage());
+	        }
+	    }
 
 	    @Test
 	    void testValidPickupTime() {

@@ -119,7 +119,7 @@ public class PickupDao {
 	
 	public static boolean updatePickupRequest(PickupRequest pickup)throws SQLException, DAOException  {
 	    try (Connection connection = ConnectionUtil.getConnection()) {
-	        String sql = "UPDATE pickup_request SET PickupName = ?, PickupPhoneNumber = ?, PickupAddress = ?, PickupLandMark = ?, PickupPincode = ?, PickupDate = ?, PickupTime = ? WHERE PickupId = ?";
+	        String sql = "UPDATE pickup_request SET PickupName = ?, PickupPhoneNumber = ?, PickupAddress = ?, PickupLandMark = ?, PickupPincode = ?, PickupDate = ?, PickupTime = ? WHERE BookId = ?";
 
 	        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 	            preparedStatement.setString(1, pickup.getPickupName());
@@ -129,7 +129,7 @@ public class PickupDao {
 	            preparedStatement.setInt(5,pickup.getPickupPincode() );
 	            preparedStatement.setDate(6, Date.valueOf(pickup.getPickupDate()));
 	            preparedStatement.setTime(7, Time.valueOf(pickup.getPickupTime()));
-	            preparedStatement.setInt(8, pickup.getPickupId());
+	            preparedStatement.setInt(8, pickup.getBookId());
 	            
 
 	            preparedStatement.executeUpdate();

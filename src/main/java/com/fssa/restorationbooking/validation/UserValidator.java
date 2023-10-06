@@ -75,56 +75,6 @@ public class UserValidator {
 			throw new InvalidInputException(UserErrors.INVALID_PASSWORD_NULL);
 		}
 
-		// At least one uppercase letter
-		Pattern uppercasePattern = Pattern.compile(".*[A-Z].*");
-
-		// At least one lowercase letter
-		Pattern lowercasePattern = Pattern.compile(".*[a-z].*");
-
-		// At least one digit
-		Pattern digitPattern = Pattern.compile(".*[0-9].*");
-
-		// At least one special character
-		Pattern specialCharPattern = Pattern.compile(".*[!@#$%^&*()_+{}\\[\\]:;\"'<>,.?/~].*");
-
-		// No whitespaces
-		Pattern noWhitespacePattern = Pattern.compile("\\S*");
-
-		// Match each pattern against the password
-		boolean isUppercaseValid = uppercasePattern.matcher(password).matches();
-		boolean isLowercaseValid = lowercasePattern.matcher(password).matches();
-		boolean isDigitValid = digitPattern.matcher(password).matches();
-		boolean isSpecialCharValid = specialCharPattern.matcher(password).matches();
-		boolean isNoWhitespaceValid = noWhitespacePattern.matcher(password).matches();
-
-		if (password.isEmpty()) {
-			throw new InvalidInputException(UserErrors.INVALID_PASSWORD_EMPTY);
-		}
-
-		if (password.length() < 8) {
-			throw new InvalidInputException(UserErrors.INVALID_PASSWORD_LENGTH);
-		}
-
-		if (!isDigitValid) {
-			throw new InvalidInputException(UserErrors.INVALID_PASSWORD_DIGIT);
-		}
-
-		if (!isSpecialCharValid) {
-			throw new InvalidInputException(UserErrors.INVALID_PASSWORD_SPECIAL_CHAR);
-		}
-
-		if (!isUppercaseValid) {
-			throw new InvalidInputException(UserErrors.INVALID_PASSWORD_UPPERCASE);
-		}
-
-		if (!isLowercaseValid) {
-			throw new InvalidInputException(UserErrors.INVALID_PASSWORD_LOWERCASE);
-		}
-
-		if (!isNoWhitespaceValid) {
-			throw new InvalidInputException(UserErrors.INVALID_PASSWORD_WHITESPACE);
-		}
-
 		return true;
 
 	}
